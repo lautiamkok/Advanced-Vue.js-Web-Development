@@ -1,0 +1,105 @@
+{
+  "app": {
+    "name": "layouts",
+    "cwd": "./",
+    "src": "content/",
+    "filePattern": "layouts/**/*.md",
+    "ignore": "**/*(drafts|archive)/**",
+    "dist": "content/layouts/layouts.json",
+    "metadata": true,
+    "version": "1.6.1"
+  },
+  "data": [
+    {
+      "id": "layouts__about",
+      "contents": "",
+      "layout": "dark",
+      "excerpt": "",
+      "meta": {
+        "relativePath": "layouts/about.html",
+        "createdAt": "2021-09-22T12:14:31.977Z",
+        "lastModified": "2021-09-22T12:14:31.977Z",
+        "size": 21,
+        "formattedSize": "21 Bytes"
+      }
+    },
+    {
+      "id": "layouts__blog",
+      "contents": "",
+      "layout": "dark",
+      "excerpt": "",
+      "meta": {
+        "relativePath": "layouts/blog.html",
+        "createdAt": "2021-09-22T12:15:31.677Z",
+        "lastModified": "2021-09-22T12:14:31.000Z",
+        "size": 21,
+        "formattedSize": "21 Bytes"
+      }
+    },
+    {
+      "id": "layouts__post-1",
+      "contents": "",
+      "layout": "light",
+      "excerpt": "",
+      "meta": {
+        "relativePath": "layouts/post-1.html",
+        "createdAt": "2021-09-22T12:49:23.156Z",
+        "lastModified": "2021-09-22T12:48:31.000Z",
+        "size": 22,
+        "formattedSize": "22 Bytes"
+      }
+    },
+    {
+      "id": "layouts__post-2",
+      "contents": "",
+      "layout": "dark",
+      "excerpt": "",
+      "meta": {
+        "relativePath": "layouts/post-2.html",
+        "createdAt": "2021-09-22T12:54:38.096Z",
+        "lastModified": "2021-09-22T12:54:38.096Z",
+        "size": 21,
+        "formattedSize": "21 Bytes"
+      }
+    },
+    {
+      "id": "layouts__product-1",
+      "contents": "",
+      "layout": "light",
+      "excerpt": "",
+      "meta": {
+        "relativePath": "layouts/product-1.html",
+        "createdAt": "2021-09-22T12:48:31.015Z",
+        "lastModified": "2021-09-22T12:48:31.015Z",
+        "size": 22,
+        "formattedSize": "22 Bytes"
+      }
+    },
+    {
+      "id": "layouts__product-2",
+      "contents": "",
+      "layout": "dark",
+      "excerpt": "",
+      "meta": {
+        "relativePath": "layouts/product-2.html",
+        "createdAt": "2021-09-22T12:48:23.439Z",
+        "lastModified": "2021-09-22T12:14:41.000Z",
+        "size": 21,
+        "formattedSize": "21 Bytes"
+      }
+    },
+    {
+      "id": "layouts__shop",
+      "contents": "",
+      "layout": "light",
+      "excerpt": "",
+      "meta": {
+        "relativePath": "layouts/shop.html",
+        "createdAt": "2021-09-22T12:37:09.962Z",
+        "lastModified": "2021-09-22T12:37:09.962Z",
+        "size": 22,
+        "formattedSize": "22 Bytes"
+      }
+    }
+  ]
+}

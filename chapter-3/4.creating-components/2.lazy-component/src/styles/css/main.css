@@ -1,0 +1,21 @@
+.flex-center-x {
+  @apply
+    flex
+    flex-wrap
+    justify-center;
+}
+
+.flex-center-y {
+  @apply
+    flex
+    items-center
+    flex-wrap;
+}
+
+.flex-center-xy {
+  @apply
+    flex
+    items-center
+    flex-wrap
+    justify-center;
+}
