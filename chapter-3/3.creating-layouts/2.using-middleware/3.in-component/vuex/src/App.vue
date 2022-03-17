@@ -22,7 +22,7 @@
 import { ref, watch, onErrorCaptured } from 'vue'
 import { useStore } from 'vuex'
 
-// https://next.router.vuejs.org/guide/advanced/composition-api.html#accessing-the-router-and-current-route-inside-setup
+// https://router.vuejs.org/guide/advanced/composition-api.html#accessing-the-router-and-current-route-inside-setup
 import { useRouter, useRoute } from 'vue-router'
 
 // Import layouts.
