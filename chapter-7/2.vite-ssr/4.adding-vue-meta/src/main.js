@@ -4,7 +4,7 @@
 import App from './App.vue'
 import { createSSRApp } from 'vue'
 import { createRouter } from './router'
-import { createMetaManager, plugin as metaPlugin } from 'vue-meta'
+import { createMetaManager } from 'vue-meta'
 
 export function createApp(isSSR = false) {
   const app = createSSRApp(App)

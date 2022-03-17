@@ -27,31 +27,31 @@ async function renderMetaToString(app, ctx = {}) {
 
 async function render(url) {
   const { app, router } = createApp(true)
-  const ctx = {}
+  const context = {}
 
   // Set the router to the desired URL before rendering.
   router.push(url)
   await router.isReady()
 
-  ctx.appHtml = await renderToString(app)
-  ctx.statusCode = 200
-  ctx.app = app
+  context.appHtml = await renderToString(app)
+  context.statusCode = 200
+  context.app = app
 
-  await renderMetaToString(app, ctx)
-  if (!ctx.teleports) {
-    ctx.teleports = {}
+  await renderMetaToString(app, context)
+  if (!context.teleports) {
+    context.teleports = {}
   }
 
   // If the app has an error, then get the status code from it.
   if (app.error) {
-    ctx.statusCode = app.statusCode
+    context.statusCode = app.statusCode
   }
   // If the 404 page is being used, then set the status code to 404.
   if (router.currentRoute.value.name === '404') {
-    ctx.statusCode = 404
+    context.statusCode = 404
   }
 
-  return ctx
+  return context
 }
 
 export { render }

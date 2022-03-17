@@ -58,7 +58,7 @@ async function createServer() {
       //    your ESM source code to be usable in Node.js! There is no bundling
       //    required, and provides efficient invalidation similar to HMR.
       //    Use dynamic import the built module in .mjs files.
-      const { render } = !isProd ? await vite.ssrLoadModule('/src/entry-server.js') : await import('./dist/server/entry-server.js')
+      const { render } = !isProduction ? await vite.ssrLoadModule('/src/entry-server.js') : await import('./dist/server/entry-server.js')
 
       // 4. Render the app HTML. This assumes entry-server.js's exported `render`
       //    function calls appropriate framework SSR APIs,
@@ -83,8 +83,6 @@ async function createServer() {
     } catch (e) {
       // If an error is caught, let Vite fix the stack trace so it maps back to
       // your actual source code. End the app with the error here.
-      // console.log(e.stack)
-      // console.log(e.statusCode)
       vite && vite.ssrFixStacktrace(e)
       res.status(500).end(e.stack)
     }
