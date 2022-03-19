@@ -10,8 +10,7 @@
  * @subpackage --
  * @since VueSSR 1.0
  */
-?><!doctype html>
-<?php
+
 // Retrieves the ID of the currently queried object with get_queried_object_id().
 // https://developer.wordpress.org/reference/functions/get_queried_object_id/
 $post_meta = create_post_meta(get_queried_object_id(), $type = 'article');
@@ -22,17 +21,14 @@ $meta_og = $post_meta['open_graph'];
 $open_graph = carbon_get_theme_option('open_graph')[0];
 $favicon_id = carbon_get_theme_option('favicon');
 $favicon_url = get_image_url($favicon_id);
-?>
-
-<!DOCTYPE html>
+?><!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
   <meta charset="<?php bloginfo( 'charset' ); ?>">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- standard meta content -->
-  <meta name="description" content="<?php echo $meta_primary['title'];?>">
+  <meta name="description" content="<?php echo $meta_primary['description'];?>">
   <meta name="keywords" content="<?php echo $meta_primary['keywords']; ?>">
 
   <!-- social meta content -->
