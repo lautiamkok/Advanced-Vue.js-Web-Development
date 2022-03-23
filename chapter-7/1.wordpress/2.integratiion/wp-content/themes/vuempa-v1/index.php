@@ -17,7 +17,7 @@
 get_header(); ?>
 
 <!-- insert script into the template directly and manually -->
-<script type="module" crossorigin src="<?php echo get_template_directory_uri(); ?>/dist/assets/main.c119ceb7.js"></script>
+<script type="module" crossorigin src="<?php echo get_template_directory_uri(); ?>/dist/assets/main.8b9dc505.js"></script>
 
 <main>
   <div id="app">

@@ -19,8 +19,8 @@ register_nav_menus(
 );
 
 add_action( 'wp_enqueue_scripts', function() {
-    wp_enqueue_script('module-1', get_template_directory_uri() . '/dist/assets/index.a9fd72e0.js', null, null, null);
-    wp_enqueue_script('module-2', get_template_directory_uri() . '/dist/assets/vendor.8fad3531.js', null, null, null);
+    wp_enqueue_script('module-1', get_template_directory_uri() . '/dist/assets/index.654dbb49.js', null, null, null);
+    wp_enqueue_script('module-2', get_template_directory_uri() . '/dist/assets/vendor.aac4256a.js', null, null, null);
 });
 
 // Change the script tag and return it.

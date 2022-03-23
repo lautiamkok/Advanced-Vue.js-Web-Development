@@ -19,8 +19,8 @@
   <?php wp_head(); ?>
 
   <!-- Insert modules directly here or programmatically in function.php -->
-  <!-- <script type="module" crossorigin src="<?php echo get_template_directory_uri(); ?>/dist/assets/index.a9fd72e0.js"></script>
-  <link rel="modulepreload" href="<?php echo get_template_directory_uri(); ?>/dist/assets/vendor.8fad3531.js"> -->
+  <!-- <script type="module" crossorigin src="<?php echo get_template_directory_uri(); ?>/dist/assets/index.654dbb49.js"></script>
+  <link rel="modulepreload" href="<?php echo get_template_directory_uri(); ?>/dist/assets/vendor.aac4256a.js"> -->
 </head>
 
 <body <?php body_class(); ?>>

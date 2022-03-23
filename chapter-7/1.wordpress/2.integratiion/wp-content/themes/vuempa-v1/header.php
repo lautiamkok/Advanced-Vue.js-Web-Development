@@ -26,8 +26,9 @@
   ?>
 
   <!-- Common modules share between templates -->
-  <link rel="modulepreload" href="<?php echo get_template_directory_uri(); ?>/dist/assets/modulepreload-polyfill.b7f2da20.js">
-  <link rel="modulepreload" href="<?php echo get_template_directory_uri(); ?>/dist/assets/vendor.8fad3531.js">
+  <link rel="modulepreload" href="<?php echo get_template_directory_uri(); ?>/dist/assets/main.5691f73b.js">
+  <link rel="modulepreload" href="<?php echo get_template_directory_uri(); ?>/dist/assets/vendor.b2dd5ac4.js">
+  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/dist/assets/main.8e40d16e.css">
 </head>
 
 <body <?php body_class(); ?>>
