@@ -9,7 +9,6 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 
 // Create a standalone reactive title.
-// https://v3.vuejs.org/guide/reactivity-fundamentals.html#creating-standalone-reactive-values-as-refs
 const title = ref(null)
 
 // Create a dummy data of posts.

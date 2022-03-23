@@ -14,8 +14,6 @@ const contents = ref(null)
 
 // Using `await` - must use with `<suspense>`.
 // https://vuejs.org/api/sfc-script-setup.html
-// https://v3.vuejs.org/guide/migration/suspense.html
-// https://github.com/vuejs/vue-next/issues/2143#issuecomment-694640896
 const { data } = await useFetch('/pages/pages__home__index')
 if (data === null) {
   throwError('Sorry, we cannot find the requested page.', 404)

@@ -25,7 +25,6 @@ const quantity = ref(props.min)
 const error = ref(null)
 
 // Watch a ref object directly.
-// https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watch
 watch(quantity, (newVal, prevVal) => {
     const number = parseInt(newVal)
     if (isNum(number)) {

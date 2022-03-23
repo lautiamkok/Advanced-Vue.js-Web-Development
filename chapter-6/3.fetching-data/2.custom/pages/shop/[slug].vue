@@ -13,7 +13,6 @@ const title = ref(null)
 const contents = ref(null)
 
 // Store the watch function to a variable so that you can destroy it somewhere.
-// https://v3.vuejs.org/api/instance-methods.html#watch
 const unwatch = watch(
   () => route.params.slug,
   async slug => {

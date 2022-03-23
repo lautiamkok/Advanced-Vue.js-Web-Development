@@ -23,7 +23,7 @@ const { data, error } = await useFetch('/pages/pages__home__index', {
 })
 
 // Unwrap the ref data.
-// https://v3.vuejs.org/api/refs-api.html#unref
+// https://vuejs.org/api/reactivity-utilities.html#unref
 const unwrapped = unref(data)
 if (!unref(error)) {
   // Populate the properties.

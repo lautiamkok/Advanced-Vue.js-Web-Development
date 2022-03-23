@@ -8,7 +8,7 @@
 function create_post_items($data) {
     $items = [];
 
-    // Get the params from the route.
+    // Get the params.
     $limit = $data->get_param('limit') ? $data->get_param('limit') : -1;
     $page = $data->get_param('page') ? $data->get_param('page') : 1;
     $year = $data->get_param('year');
@@ -63,19 +63,18 @@ function create_post_items($data) {
         ];
         $args = array_merge($args, $category_args);
     }
-    $query = new WP_Query($args);
+    $post_query = new WP_Query($args);
 
     // Count all posts.
-    $total_posts = $query->found_posts;
+    $total_posts = $post_query->found_posts;
     if ($total_only) {
         return [
             'total' => $total_posts
         ];
     }
 
-    // Get all posts.
-    // https://stefanledin.se/how-to-use-a-foreach-loop-with-wp_query/
-    $posts = $query->get_posts();
+    // Get and loop the queried posts.
+    $posts = $post_query->get_posts();
     foreach($posts as $index => $post) {
         // Replace the space with a T to conform to a simplified version of ISO-8601.
         $datetime = new DateTime($post->post_date);

@@ -66,10 +66,8 @@ async function add () {
   popperTooltip.value.removeAttribute('data-show')
 }
 
-// Create a reactive object for popper instance.
+// Create reactive objects for popper instance and elements.
 const popperInstance = ref(null)
-
-// https://v3.vuejs.org/guide/composition-api-template-refs.html#template-refs
 const popperButton = ref(null)
 const popperTooltip = ref(null)
 

@@ -42,7 +42,7 @@ function empty (event) {
 // Create a reactive object for popper instance.
 const popperInstance = ref(null)
 
-// https://v3.vuejs.org/guide/composition-api-template-refs.html#template-refs
+// Create a template root reference.
 const root = ref(null)
 
 onMounted(() => {

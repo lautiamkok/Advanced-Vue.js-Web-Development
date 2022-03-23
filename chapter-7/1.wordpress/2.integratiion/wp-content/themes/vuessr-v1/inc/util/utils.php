@@ -44,7 +44,6 @@ function get_image_data($attachment_id) {
 }
 
 // Get the web page content via cURL.
-// https://stackoverflow.com/a/14953910/413225
 function get_web_page($url) {
     // servers might disallow requests that contain unidentified user agent, so
     // set an arbitrary/ custom user agent to fool the server that your cURL

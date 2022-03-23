@@ -15,7 +15,8 @@ const props = defineProps({
   relativePath: String
 })
 
-// https://v3.vuejs.org/guide/composition-api-template-refs.html#template-refs
+// Create a template root reference.
+// https://vuejs.org/guide/essentials/template-refs.html#template-refs
 const root = ref(null)
 
 onMounted(() => {

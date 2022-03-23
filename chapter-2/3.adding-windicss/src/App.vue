@@ -50,4 +50,10 @@
 
   <img alt="afternoon" src="@/assets/afternoon.jpg" />
   <img alt="nightfall" src="/static/nightfall.jpg" />
+
+  <current-breakpoint/>
 </template>
+
+<script setup>
+import CurrentBreakpoint from '@/components/current-breakpoint.vue'
+</script>

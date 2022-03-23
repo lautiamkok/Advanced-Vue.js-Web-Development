@@ -2,7 +2,7 @@
 
 import { getAsset, getStatic } from '@/modules/utils'
 
-// https://v3.vuejs.org/guide/mixins.html#basics
+// https://vuejs.org/api/options-composition.html#mixins
 export default {
   methods: {
     getAsset,

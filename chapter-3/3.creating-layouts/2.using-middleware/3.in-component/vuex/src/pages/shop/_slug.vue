@@ -51,7 +51,6 @@ const unwatch = watch(
 // by calling unwatch() somewhere else;
 // you can store the unwatch function to a variable in the data
 // or whatever suits you best
-// https://v3.vuejs.org/api/instance-methods.html#watch
 
 // Destroy the watcher before leaving.
 // https://next.router.vuejs.org/guide/advanced/composition-api.html#navigation-guards

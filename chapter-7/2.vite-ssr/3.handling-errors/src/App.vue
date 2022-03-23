@@ -80,7 +80,6 @@ onErrorCaptured (error => {
   throwError(error.message, error.statusCode || 500)
 
   // Return false to prevent the error from propagating further.
-  // https://v3.vuejs.org/api/options-lifecycle-hooks.html#errorcaptured
   // return false
 
   // Option 3: Both client and server handle the error.

@@ -13,7 +13,6 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 
 // Declare a reactive state.
-// https://v3.vuejs.org/guide/reactivity-fundamentals.html#declaring-reactive-state
 const product = reactive({
   title: ''
 })

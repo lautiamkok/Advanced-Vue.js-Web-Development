@@ -78,7 +78,7 @@ onErrorCaptured (error => {
   })
 
   // Return false to prevent the error from propagating further.
-  // https://v3.vuejs.org/api/options-lifecycle-hooks.html#errorcaptured
+  // https://vuejs.org/api/options-lifecycle.html#errorcaptured
   return false
 })
 </script>
