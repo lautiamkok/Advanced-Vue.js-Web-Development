@@ -8,5 +8,5 @@ export default {
   component: about,
 
   // Set the layout manually.
-  meta: { layout: 'dark' },
+  meta: { layout: 'dark' }
 }

@@ -16,7 +16,7 @@ export default {
       name: 'blog-index',
       // when /blog is matched
       path: '',
-      component: index,
+      component: index
     },
     {
       name: 'blog-slug',
@@ -25,7 +25,7 @@ export default {
       component: slug,
 
       // Set the layout manually.
-      meta: { layout: 'light' },
+      meta: { layout: 'light' }
     }
   ],
 }

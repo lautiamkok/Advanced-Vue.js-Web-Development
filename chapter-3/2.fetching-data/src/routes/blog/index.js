@@ -16,13 +16,13 @@ export default {
       name: 'blog-index',
       // when /blog is matched
       path: '',
-      component: index,
+      component: index
     },
     {
       name: 'blog-slug',
       // when /blog/:slug is matched
       path: ':slug',
-      component: slug,
+      component: slug
     }
   ],
 }

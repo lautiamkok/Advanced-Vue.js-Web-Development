@@ -1,16 +1,16 @@
 'use strict'
 
-import index from './index/index'
-import about from './about/index'
-import contact from './contact/index'
-import shop from './shop/index'
+import home from './home'
+import about from './about'
+import contact from './contact'
+import shop from './shop'
 import shopSlug from './shop/_slug'
-import blog from './blog/index'
-import error404 from './404/index'
-import error from './error/index'
+import blog from './blog'
+import error404 from './404'
+import error from './error'
 
 const routes = [
-  index,
+  home,
   about,
   contact,
   shop,
