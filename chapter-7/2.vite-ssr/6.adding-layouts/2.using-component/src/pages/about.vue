@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { ref, useSSRContext } from 'vue'
+import { ref } from 'vue'
 import { useStore } from 'vuex'
 
 import useFetch from '@/composables/use-fetch'

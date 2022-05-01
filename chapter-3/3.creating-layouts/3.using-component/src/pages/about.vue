@@ -3,9 +3,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import useFetch from '@/composables/use-fetch'
-import { throwError, isEmpty } from '@/modules/utils'
+import { throwError } from '@/modules/utils'
 import DynamicLayout from '@/components/dynamic-layout.vue'
 
 const { data } = await useFetch('/pages/pages__about__index')

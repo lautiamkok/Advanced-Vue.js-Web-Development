@@ -3,8 +3,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRoute, onBeforeRouteUpdate } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 import useFetch from '@/composables/use-fetch'
 import { throwError } from '@/modules/utils'
