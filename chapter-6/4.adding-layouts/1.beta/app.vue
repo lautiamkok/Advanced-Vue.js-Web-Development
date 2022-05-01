@@ -1,12 +1,14 @@
 <template>
-  <div>
-    <ul v-if="menu">
-      <li v-for="(item, index) in menu">
-        <router-link :to="item.path">{{ item.title }}</router-link>
-      </li>
-    </ul>
-    <NuxtPage/>
-  </div>
+  <NuxtLayout>
+    <div>
+      <ul v-if="menu">
+        <li v-for="(item, index) in menu">
+          <router-link :to="item.path">{{ item.title }}</router-link>
+        </li>
+      </ul>
+      <NuxtPage/>
+    </div>
+  </NuxtLayout>
 </template>
 
 <script setup>

@@ -1,16 +1,14 @@
 <template>
-  <div id="app">
-    <component :is="layouts[route.meta.layout || 'default']">
-      <nav v-if="menu">
-        <ul>
-          <li v-for="(item, index) in menu">
-            <router-link :to="item.path">{{ item.title }}</router-link>
-          </li>
-        </ul>
-      </nav>
-      <router-view/>
-    </component>
-  </div>
+  <component :is="layouts[route.meta.layout || 'default']">
+    <nav v-if="menu">
+      <ul>
+        <li v-for="(item, index) in menu">
+          <router-link :to="item.path">{{ item.title }}</router-link>
+        </li>
+      </ul>
+    </nav>
+    <router-view/>
+  </component>
 </template>
 
 <script setup>
