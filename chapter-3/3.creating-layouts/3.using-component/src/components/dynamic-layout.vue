@@ -1,6 +1,6 @@
 <template>
   <component
-    :is="layouts[layout]"
+    v-bind:is="layouts[layout]"
     v-bind:data="data"
   />
 </template>
