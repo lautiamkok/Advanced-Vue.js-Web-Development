@@ -15,6 +15,15 @@ import useFetch from '@/composables/use-fetch'
 import { throwError } from '@/modules/utils'
 import Comment from '@/components/comment.vue'
 
+// Make sure to only call it during SSR
+// https://vitejs.dev/guide/ssr.html#conditional-logic
+// https://vuejs.org/api/ssr.html#usessrcontext
+if (import.meta.env.SSR) {
+  const ctx = useSSRContext()
+  console.log(ctx.req)
+  // ...attach properties to the context
+}
+
 const title = ref(null)
 const contents = ref(null)
 const count = ref(1)
