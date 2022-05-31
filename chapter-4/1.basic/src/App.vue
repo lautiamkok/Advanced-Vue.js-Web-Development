@@ -1,9 +1,7 @@
 <template>
-  <div id="app">
-    <suspense>
-      <router-view/>
-    </suspense>
-  </div>
+  <suspense>
+    <router-view/>
+  </suspense>
 </template>
 
 <script setup>

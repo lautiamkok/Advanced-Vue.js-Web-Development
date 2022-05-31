@@ -9,7 +9,6 @@ export default {
   // https://github.com/vitejs/vite/issues/3000
   resolve: {
     alias: {
-      vue: 'vue/dist/vue.esm-bundler',
       '@': resolve(__dirname, './src')
     },
   }
