@@ -78,7 +78,7 @@ A practical hands-on guide for creating single-page applications (SPAs), server-
 
     * Getting Started with Nuxt
     * Adding Pages, Fetching Data, and Handling Errors
-    * Adding Adding Layouts, Components, and Composables
+    * Adding Layouts, Components, and Composables
     * Serving Assets, Adding Windi CSS, and Adding Less
 
 * Chapter 7. Integrating Vue with WordPress
