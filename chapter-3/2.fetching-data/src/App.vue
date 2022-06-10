@@ -51,30 +51,37 @@ const menu = [
   }
 ]
 
-// Handle error - page/post not found.
+// Handle error - page/post not found or general errors.
 onErrorCaptured (error => {
   console.log('name =', error.name)
   console.log('message =', error.message)
   console.log('statusCode =', error.statusCode)
-  console.log('stack =', error.stack)
 
   // Push to 404 or general error page.
   // 404 - Page Not Found
   // 400 - Bad Request
   // 500 - Internal Server Error
+  const pathArray = route.path.substring(1).split('/')
+  const name = error.statusCode === 404 ? 'all' : 'error'
+  const params = {
+    name: error.name,
+    statusCode: error.statusCode,
+    message: error.message,
+    stack: error.stack
+  }
+
+  if (error.statusCode === 404) {
+    params.all = pathArray
+  } else {
+    params.error = pathArray
+  }
+  
   router.push({
-    name: error.statusCode === 404 ? '404' : 'error',
-    params: {
-      pathMatch: route.path.substring(1).split('/'),
-      name: error.name,
-      statusCode: error.statusCode || 500,
-      message: error.message,
-      stack: error.stack
-    },
+    name,
+    params
   })
 
   // Return false to prevent the error from propagating further.
-  // https://vuejs.org/api/options-lifecycle.html#errorcaptured
   return false
 })
 </script>

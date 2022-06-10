@@ -32,11 +32,6 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useStore } from 'vuex'
-import cartItem from '@/components/cart-item.vue'
-import cartActions from '@/components/cart-actions.vue'
-
 const store = useStore()
 const title = 'Cart'
 const items = computed(() => store.getters['cart/getItems'])

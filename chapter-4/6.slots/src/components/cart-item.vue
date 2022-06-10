@@ -35,10 +35,7 @@
 </template>
 
 <script setup>
-import { useStore } from 'vuex'
 import usePath from '@/composables/use-path'
-import cartDeleteItem from '@/components/cart/delete-item.vue'
-import cartUpdateItem from '@/components/cart/update-item.vue'
 
 const store = useStore()
 

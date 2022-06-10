@@ -4,7 +4,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import useFetch from '@/composables/use-fetch'
 import { throwError } from '@/modules/utils'
 

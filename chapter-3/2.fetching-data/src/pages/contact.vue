@@ -4,4 +4,8 @@
 
 <script setup>
 const title = 'Contact'
+
+// TypeError test:
+const num = 123
+num.toUpperCase()
 </script>

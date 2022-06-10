@@ -8,7 +8,6 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
 import { isNum } from '@/modules/utils'
 
 // Define props.

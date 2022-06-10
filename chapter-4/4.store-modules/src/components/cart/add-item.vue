@@ -19,7 +19,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
 import { createPopper } from '@popperjs/core'
 import { delay } from '@/modules/utils'
 

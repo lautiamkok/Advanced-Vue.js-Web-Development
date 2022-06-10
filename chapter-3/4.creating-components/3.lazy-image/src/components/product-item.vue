@@ -4,7 +4,7 @@
       {{ product.title }}
     </router-link>
   </h2>
-  <lazy-image
+  <lazy-pic
     v-bind:src="product.thumbnail.src"
     v-bind:alt="product.thumbnail.alt"
     v-bind:relative-path="product.meta.relativePath"
@@ -13,7 +13,7 @@
   <div>
     <p v-html="product.excerpt"></p>
   </div>
-  <add-item
+  <cart-add-item
     v-bind:min="product.min"
     v-bind:max="product.max"
     v-on:add-quantity="addQuantity"
@@ -22,8 +22,6 @@
 
 <script setup>
 import usePath from '@/composables/use-path'
-import addItem from '@/components/cart/add-item.vue'
-import lazyImage from '@/components/lazy/image.vue'
 
 // Define props.
 const props = defineProps({

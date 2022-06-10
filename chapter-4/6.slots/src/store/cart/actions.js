@@ -7,7 +7,14 @@ import localforage from 'localforage'
 import _ from 'lodash'
 
 export default {
-  populate ({ state, commit, rootState }, items) {
+  async populate ({ state, commit }) {
+    // Remove item.
+    // await localforage.removeItem('cart')
+
+    let items = await localforage.getItem('cart')
+    if (items === null) {
+      items = await localforage.setItem('cart', [])
+    }
     commit('setItems', items)
   },
 

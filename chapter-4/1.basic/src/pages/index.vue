@@ -4,8 +4,11 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useStore } from 'vuex'
+// No need to import methods from vue and vuex manually anymore for using
+// unplugin-auto-import 
+
+// import { computed } from 'vue' 
+// import { useStore } from 'vuex'
 
 const store = useStore()
 const title = 'Home'

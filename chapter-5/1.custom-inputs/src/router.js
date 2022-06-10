@@ -1,7 +1,7 @@
 'use strict'
 
 import { createRouter, createWebHistory } from 'vue-router'
-import routes from '@/routes'
+import routes from '~pages'
 
 // Create the router.
 export default createRouter({

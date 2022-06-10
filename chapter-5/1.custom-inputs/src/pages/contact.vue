@@ -45,14 +45,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import inputXyz from '@/components/input-xyz.vue'
-import textareaXyz from '@/components/textarea-xyz.vue'
-import radioXyz from '@/components/radio-xyz.vue'
-import checkboxXyz from '@/components/checkbox-xyz.vue'
-import checkboxgroupXyz from '@/components/checkboxgroup-xyz.vue'
-import selectXyz from '@/components/select-xyz.vue'
-import multiselectXyz from '@/components/multiselect-xyz.vue'
+// No need to import components manually anymore for using
+// unplugin-vue-components.
+
+// import inputXyz from '@/components/input-xyz.vue'
+// import textareaXyz from '@/components/textarea-xyz.vue'
+// import radioXyz from '@/components/radio-xyz.vue'
+// import checkboxXyz from '@/components/checkbox-xyz.vue'
+// import checkboxgroupXyz from '@/components/checkboxgroup-xyz.vue'
+// import selectXyz from '@/components/select-xyz.vue'
+// import multiselectXyz from '@/components/multiselect-xyz.vue'
 
 const title = 'Contact'
 const username = ref(null)

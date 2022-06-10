@@ -19,10 +19,13 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useStore } from 'vuex'
-import cartItem from '@/components/cart-item.vue'
-import cartActions from '@/components/cart-actions.vue'
+// No need to import methods and components manually anymore for using
+// unplugin-auto-import and unplugin-vue-components
+
+// import { computed } from 'vue'
+// import { useStore } from 'vuex'
+// import cartItem from '@/components/cart-item.vue'
+// import cartActions from '@/components/cart-actions.vue'
 
 const store = useStore()
 const title = 'Cart'

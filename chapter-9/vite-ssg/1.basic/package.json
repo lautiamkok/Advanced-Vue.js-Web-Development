@@ -1,0 +1,21 @@
+{
+  "name": "starter",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite-ssg build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.2.25"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.2.0",
+    "@vueuse/head": "^0.7.6",
+    "vite": "^2.8.0",
+    "vite-plugin-pages": "^0.23.0",
+    "vite-ssg": "^0.20.0",
+    "vue-router": "^4.0.15"
+  }
+}

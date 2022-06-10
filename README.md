@@ -12,11 +12,13 @@ A practical hands-on guide for creating single-page applications (SPAs), server-
 
 * Create routes, pages, and layouts with Vue Router
 
-* Create dynamic layouts with Vue Router, Mitt, nad Vuex
+* Create dynamic layouts with Vue Router, Mitt, and Vuex
 
 * Create a shopping cart system with Vuex
 
 * Lazy-load components and images
+
+* Auto import components, composables, and APIs on-demand
 
 * Mock data and a REST API with Markdown documents
 
@@ -30,7 +32,11 @@ A practical hands-on guide for creating single-page applications (SPAs), server-
 
 * Create Vue.js SSR applications with Vite SSR
 
+* Use WordPress as a headless CMS
+
 * Integrate Vite SSR with WordPress
+
+* Manage document head tags for SEO and Open Graph
 
 ## Chapters and Lessons
 
@@ -71,11 +77,22 @@ A practical hands-on guide for creating single-page applications (SPAs), server-
 * Chapter 6. Introducing Nuxt
 
     * Getting Started with Nuxt
-    * Adding Pages and Fetching Data
-    * Adding Layouts and Components
-    * Adding Windi CSS and Less CSS Preprocessor
+    * Adding Pages, Fetching Data, and Handling Errors
+    * Adding Adding Layouts, Components, and Composables
+    * Serving Assets, Adding Windi CSS, and Adding Less
 
-* Chapter 7. Going Further From Here
+* Chapter 7. Integrating Vue with WordPress
+
+    * Creating a Vue SPA for WordPress
+    * Creating a Vite MPA for WordPress
+
+* Chapter 8. Introducing Vite & Vue SSR
+
+    * Introducing Vite SSR
+    * Creating Advanced Vue SSR
+    * Using `vite-ssr` Plugin
+
+* Chapter 9. Going Further From Here
 
     * Knowing Your Options
     * Testing Your Knowledge

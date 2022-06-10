@@ -9,8 +9,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-
 // Define props.
 const props = defineProps({
   max: Number,

@@ -1,15 +1,31 @@
 'use strict'
 
 import { createRouter, createWebHistory } from 'vue-router'
-import routes from '@/routes'
+import routes from '~pages'
 
-const apiBaseUrl = import.meta.env.VITE_REMOTE_API_BASE_URL
+import log from '@/middleware/log'
+import layout from '@/middleware/layout/true'
+
+for(let route of routes) {
+  if (route.path === '/about') {
+    route.beforeEnter = [log, layout]
+  }
+
+  if (route.path === '/blog') {
+    route.children.forEach(child => {
+      if (child.path === ':slug') {
+        child.beforeEnter = layout
+      }
+    })
+  }
+
+  if (route.path === '/shop/:slug') {
+    route.beforeEnter = layout
+  }
+}
 
 // Create the router.
-const router = createRouter({
+export default createRouter({
   history: createWebHistory(), // No # on the URLs.
   routes
 })
-
-// Create the router.
-export default router

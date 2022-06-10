@@ -4,8 +4,6 @@
 </template>
 
 <script setup>
-// https://vuejs.org/api/composition-api-lifecycle.html#composition-api-lifecycle-hooks
-import { ref, onMounted } from 'vue'
 import useFetch from '@/composables/use-fetch'
 import { throwError } from '@/modules/utils'
 

@@ -1,5 +1,3 @@
-import { useRoute } from 'vue-router'
-
 // You can't create a computed property for each iteration. So create a function
 // to compute in the v-loop.
 export default slug => {

@@ -1,7 +1,7 @@
 'use strict'
 
 import { createRouter, createWebHistory } from 'vue-router'
-import routes from '@/routes'
+import routes from '~pages'
 import layout from '@/middleware/layout/fetch'
 
 const router = createRouter({

@@ -1,0 +1,26 @@
+{
+  "name": "starter",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite-ssr dev",
+    "build": "vite-ssr build",
+    "start": "node server"
+  },
+  "dependencies": {
+    "@vueuse/head": "^0.7.6",
+    "cross-fetch": "^3.1.5",
+    "moment": "^2.29.3",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.15"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.2.0",
+    "express": "^4.17.3",
+    "unplugin-auto-import": "^0.8.6",
+    "unplugin-vue-components": "^0.19.6",
+    "vite": "^2.8.0",
+    "vite-plugin-pages": "^0.23.0",
+    "vite-ssr": "^0.16.0"
+  }
+}

@@ -4,7 +4,7 @@
       {{ product.title }}
     </router-link>
   </h2>
-  <lazy-image
+  <lazy-pic
     v-bind:src="product.thumbnail.src"
     v-bind:alt="product.thumbnail.alt"
     v-bind:relative-path="product.meta.relativePath"
@@ -39,10 +39,7 @@
 </template>
 
 <script setup>
-import { useStore } from 'vuex'
 import usePath from '@/composables/use-path'
-import cartAddItem from '@/components/cart/add-item.vue'
-import lazyImage from '@/components/lazy/image.vue'
 
 const store = useStore()
 

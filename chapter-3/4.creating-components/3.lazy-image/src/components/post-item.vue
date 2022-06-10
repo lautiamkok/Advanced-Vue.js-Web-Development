@@ -1,5 +1,5 @@
 <template>
-  <lazy-background
+  <lazy-bg
     v-bind:src="thumbnail.src"
     v-bind:relative-path="meta.relativePath"
     class="
@@ -19,7 +19,7 @@
         {{ title }}
       </router-link>
     </h2>
-  </lazy-background>
+  </lazy-bg>
 
   <p>{{ date }}</p>
 
@@ -29,8 +29,6 @@
 </template>
 
 <script setup>
-import lazyBackground from '@/components/lazy/background.vue'
-
 // Define props. defineProps and defineEmits do not need to be imported, and are
 // compiled away when <script setup> is processed.
 const props = defineProps({

@@ -17,12 +17,10 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import useFetch from '@/composables/use-fetch'
 import usePath from '@/composables/use-path'
 import useDate from '@/composables/use-date'
 import { throwError } from '@/modules/utils'
-import postItem from '@/components/post-item.vue'
 
 const posts = ref({})
 const title = 'Blog Index'

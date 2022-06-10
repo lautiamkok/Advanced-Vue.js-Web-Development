@@ -20,12 +20,6 @@
 </template>
 
 <script setup>
-// import { computed } from 'vue'
-// import { useStore } from 'vuex'
-import cartItem from '@/components/cart-item.vue'
-import cartActions from '@/components/cart-actions.vue'
-
-// const store = useStore()
 const title = 'Cart'
 
 // The current official way in accessing state, getters, mutations, and actions.
@@ -33,6 +27,7 @@ const title = 'Cart'
 // composition API, you'll have to manually create a computed like in the
 // docs:
 // https://next.vuex.vuejs.org/guide/composition-api.html
+// const store = useStore()
 // const items = computed(() => store.getters['cart/getItems'])
 // const sumItems = computed(() => store.getters['cart/sumItems'])
 // const uniqueItems = computed(() => store.getters['cart/uniqueItems'])
