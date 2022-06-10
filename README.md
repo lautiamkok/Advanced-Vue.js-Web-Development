@@ -18,7 +18,9 @@ A practical hands-on guide for creating single-page applications (SPAs), server-
 
 * Lazy-load components and images
 
-* Auto import components, composables, and APIs on-demand
+* Auto-generate application routes from the file system
+
+* Auto-import components, composables, and APIs on-demand
 
 * Mock data and a REST API with Markdown documents
 
@@ -88,7 +90,7 @@ A practical hands-on guide for creating single-page applications (SPAs), server-
 
 * Chapter 8. Introducing Vite & Vue SSR
 
-    * Introducing Vite SSR
+    * Getting Started with Vite SSR
     * Creating Advanced Vue SSR
     * Using `vite-ssr` Plugin
 
