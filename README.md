@@ -40,7 +40,7 @@ A practical hands-on guide for creating single-page applications (SPAs), server-
 
 * Manage document head tags for SEO and Open Graph
 
-* Handle errors in Vue SPA and Vue SSR
+* Handle errors in Vue.js SPA and Vue.js SSR
 
 ## Chapters and Lessons
 
