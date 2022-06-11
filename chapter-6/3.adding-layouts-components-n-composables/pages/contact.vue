@@ -47,8 +47,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-
 const title = 'Contact'
 const username = ref(null)
 const name = ref(null)
