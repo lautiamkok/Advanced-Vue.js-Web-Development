@@ -16,20 +16,13 @@
  */
 get_header();
 
-// Get current URL.
-global $wp;
-$current_url = home_url(add_query_arg(array(), $wp->request));
-$parsed_url = parse_url($current_url);
-
-$path = isset($parsed_url['path']) ? $parsed_url['path'] : '';
-$app_url = 'http://localhost:3000' . $path;
-
-$response = get_web_page($app_url);
-$page = $response['response'];
+// Get the app HTML to the WP cache.
+// https://developer.wordpress.org/reference/functions/wp_cache_get/
+$app_html = wp_cache_get('app_html');
 ?>
 
 <main>
-  <div id="app"><?php echo $page; ?></div>
+  <div id="app"><?php echo $app_html; ?></div>
 </main>
 
 <?php get_footer();

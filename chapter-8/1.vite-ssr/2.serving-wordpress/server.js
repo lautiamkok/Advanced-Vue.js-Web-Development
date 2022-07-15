@@ -73,7 +73,9 @@ async function createServer() {
       if (!isWordPress) {
         res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
       } else {
-        res.status(200).set({ 'Content-Type': 'text/html' }).end(appHtml)
+        res.status(200).json({
+          appHtml
+        })
       }
 
     } catch (e) {

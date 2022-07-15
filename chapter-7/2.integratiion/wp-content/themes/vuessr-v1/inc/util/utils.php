@@ -84,6 +84,6 @@ function get_web_page($url) {
     $result['header_info'] = $header_info;
     $result['error_number'] = $error_number;
     $result['error_message'] = $error_message;
-    $result['response'] = $response;
+    $result['response'] = json_decode($response, true);
     return $result;
 }
