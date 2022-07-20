@@ -1,6 +1,7 @@
 {
     "require": {
-        "htmlburger/carbon-fields": "^3.3"
+        "htmlburger/carbon-fields": "^3.3",
+        "htmlburger/carbon-field-number": "^3.0"
     },
     "autoload": {
         "psr-4": {
