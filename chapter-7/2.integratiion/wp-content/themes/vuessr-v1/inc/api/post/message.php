@@ -57,7 +57,7 @@ function send_message ($data) {
     $recipient_email = $message_form['recipient_email'];
 
     // Recipients:
-    // Send the order to the site owner.
+    // Send the message to the site owner.
     $mail->setFrom($server_email, $server_name);
     $mail->addAddress($recipient_email, $recipient_name);
     $mail->addReplyTo($sender_email, $sender_name);

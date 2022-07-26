@@ -218,7 +218,7 @@ function crb_attach_theme_options () {
                 ->set_help_text( 'Set forms used by the site.' )
                 ->set_layout( 'tabbed-vertical' )
 
-                // Add contact form option.
+                // Add contact form options.
                 ->add_fields( 'contact_form',  [
                     Field::make( 'text', 'slug', 'Slug' )
                         ->set_default_value( 'message' )
@@ -265,8 +265,7 @@ function crb_attach_theme_options () {
                     Field::make( 'complex', 'labels', 'Labels' )
                         ->set_help_text( 'The labels on the client form.' )
                         ->add_fields( add_crb_key_value_group() )
-                        ->set_default_value( set_contact_form_labels() )
-                        ,
+                        ->set_default_value( set_contact_form_labels() ),
 
                     Field::make( 'complex', 'client_statuses', 'Client Statuses' )
                         ->set_help_text( 'Client side verification statuses when using the client form.' )
