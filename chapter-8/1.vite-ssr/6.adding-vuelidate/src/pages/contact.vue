@@ -6,7 +6,7 @@
   </p>
 
   <form
-    v-on:submit.prevent="checkForm"
+    v-on:submit.prevent="submitForm"
     novalidate="true"
   >
     <p v-bind:class="{ 'error': v$.honorific.$errors.length }">
@@ -266,7 +266,7 @@ const rules = computed(() => {
 })
 const v$ = useVuelidate(rules, form)
 
-async function checkForm () {
+async function submitForm () {
   // Validate form.
   const isValid = await v$.value.$validate()
   if (!isValid) {
