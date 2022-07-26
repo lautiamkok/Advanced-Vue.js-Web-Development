@@ -9,7 +9,7 @@ function crb_attach_theme_options () {
     $basic_options_container = Container::make( 'theme_options', __( 'Basic Options' ) )
 
         // https://docs.carbonfields.net/learn/containers/tabs.html
-        ->add_tab( __('General Settings'), array(
+        ->add_tab( __('General Settings'), [
             Field::make( 'textarea', 'meta_description', __( 'Meta Description' ) )
                 // ->set_required( true )
                 ->set_width( 50 )
@@ -59,7 +59,7 @@ function crb_attach_theme_options () {
 
             Field::make( 'complex', 'logos', 'Logos' )
                 ->set_help_text( 'Set multiple logos on this site. For example, the logos on the footer.' )
-                ->add_fields( 'icon',  array(
+                ->add_fields( 'icon',  [
                     Field::make( 'text', 'name', __( 'Name' ) )
                         ->set_help_text( 'Set the name of the icon, e.g. "icon-ce".' )
                         ->set_width( 50 ),
@@ -67,64 +67,63 @@ function crb_attach_theme_options () {
                     Field::make( 'text', 'sizes', __( 'Sizes' ) )
                         ->set_help_text( 'Set the icon responsive sizes, e.g. "text-5xl @md:text-2xl @sm:text-xl".' )
                         ->set_width( 50 ),
-                ) )
+                ] )
 
-                ->add_fields( 'image',  array(
+                ->add_fields( 'image',  [
                     Field::make( 'image', 'id', __( 'Image' ) )
                         ->set_help_text( 'Set an image.' )
                         ->set_width( 50 ),
-                ) ),
+                ] ),            
+        ] )
 
-        ) )
-
-        ->add_tab( __('Page Not Found (404)'), array(
+        ->add_tab( __('Page Not Found (404)'), [
             Field::make( 'complex', 'page_not_found', '' )
                 ->set_help_text( 'Set contents for page not found (404).' )
 
-                ->add_fields( 'title',  array(
+                ->add_fields( 'title',  [
                     Field::make( 'text', 'title', __( '' ) )
                         ->set_help_text( 'Set a title to this page.' )
                         ->set_width( 100 ),
-                ) )
+                ] )
 
-                ->add_fields( 'description',  array(
+                ->add_fields( 'description',  [
                     Field::make( 'rich_text', 'description', __( '' ) )
                         ->set_help_text( 'Set a description to this page.' )
                         ->set_width( 100 )
                         ->set_rows( 8 )
-                        ->set_settings(array(
+                        ->set_settings( [
                             'media_buttons' => false
-                        ) ),
-                ) )
+                        ] ),
+                ] )
 
-                ->add_fields( 'content',  array(
+                ->add_fields( 'content',  [
                     Field::make( 'rich_text', 'content', __( '' ) )
                         ->set_help_text( 'Set a texual content to this page.' )
                         ->set_width( 100 )
                         ->set_rows( 8 )
-                        ->set_settings(array(
+                        ->set_settings( [
                             'media_buttons' => false
-                        ) ),
-                ) )
+                        ] ),
+                ] )
 
-                ->add_fields( 'images',  array(
+                ->add_fields( 'images',  [
                     Field::make( 'complex', 'images', '' )
                         ->set_help_text( 'Set an image content or a multiple-image content to this page.' )
                         ->set_layout( 'tabbed-vertical' )
                         ->add_fields( add_crb_image_group() ),
-                ) )
-        ) )
+                ] ),
+        ] )
         ;
 
     // Add second options page under 'Basic Options'
     Container::make( 'theme_options', __( 'Social Options' ) )
         ->set_page_parent( $basic_options_container ) // reference to a top level container
 
-        ->add_tab( __('Open Graph'), array(
+        ->add_tab( __('Open Graph'), [
             Field::make( 'complex', 'open_graph', 'Open Graph' )
                 ->set_duplicate_groups_allowed( false )
                 // ->set_max( 1 ) // same as above.
-                ->add_fields( array(
+                ->add_fields( [
                     Field::make( 'text', 'fb_app_id', 'fb:app_id' )
                         ->set_help_text( 'Go to https://developers.facebook.com/, create a Facebook app and grab the ID from there, e.g. 2740922996222837.' )
                         ->set_width( 100 ),
@@ -162,9 +161,9 @@ function crb_attach_theme_options () {
                         ->set_default_value('')
                         ->set_help_text( '@username for the content creator / author.' )
                         ->set_width( 100 ),
-                ) )
-                ->set_default_value( array(
-                    array(
+                ] )
+                ->set_default_value( [
+                    [
                         'fb_app_id' => '',
                         'og_type' => 'article',
                         'og_image' => '',
@@ -173,11 +172,11 @@ function crb_attach_theme_options () {
                         'twitter_card' => 'summary_large_image',
                         'twitter_site' => '',
                         'twitter_creator' => '',
-                    ),
-                ) ),
-        ) )
+                    ],
+                ] ),
+        ] )
 
-        ->add_tab( __('Social Profiles'), array(
+        ->add_tab( __('Social Profiles'), [
             // Repeater.
             // https://carbonfields.net/docs/guides-repeating-groups-2/?crb_version=2-2-0
             Field::make( 'complex', 'social_profiles', 'Social Profiles' )
@@ -185,7 +184,7 @@ function crb_attach_theme_options () {
                 // ->set_max( 5 )
                 // ->set_layout( 'tabbed-horizontal' )
                 // ->set_layout( 'tabbed-vertical' )
-                ->add_fields( array(
+                ->add_fields( [
                     Field::make( 'text', 'slug', 'Slug' )
                         ->set_help_text( 'e.g. facebook, instagram, etc' )
                         ->set_width( 20 ),
@@ -205,8 +204,86 @@ function crb_attach_theme_options () {
                     Field::make( 'text', 'icon', 'Icon' )
                         ->set_help_text( 'e.g. icon-social-facebook, icon-social-instagram' )
                         ->set_width( 20 ),
-                ) ),
-        ) )
+                ] ),
+        ] )
+
+        ;
+
+    // Add 3rd options page under 'Basic Options'
+    Container::make( 'theme_options', __( 'Form Options' ) )
+        ->set_page_parent( $basic_options_container ) // reference to a top level container
+
+        ->add_tab( __('Forms'), [
+            Field::make( 'complex', 'forms', '' )
+                ->set_help_text( 'Set forms used by the site.' )
+                ->set_layout( 'tabbed-vertical' )
+
+                // Add contact form option.
+                ->add_fields( 'contact_form',  [
+                    Field::make( 'text', 'slug', 'Slug' )
+                        ->set_default_value( 'message' )
+                        ->set_help_text( 'Set an unique key or ID to this component.' )
+                        ->set_width( 100 ),
+
+                    Field::make( 'text', 'title', __( 'Title' ) )
+                        ->set_help_text( 'text', 'Set the title of this component.' )
+                        ->set_width( 100 ),
+
+                    Field::make( 'rich_text', 'description', __( 'Description' ) )
+                        ->set_help_text( 'Set the description of this component.' )
+                        ->set_width( 100 )
+                        ->set_rows( 8 )
+                        ->set_settings( [
+                            'media_buttons' => false
+                        ] ),
+
+                    Field::make( 'text', 'server_name', 'Server Name' )
+                        ->set_default_value( 'Jane Doe Server' )
+                        ->set_help_text( '' )
+                        ->set_width( 100 ),
+
+                    Field::make( 'text', 'server_email', 'Server Email' )
+                        ->set_default_value( 'no-reply@janedoe.com' )
+                        ->set_help_text( '' )
+                        ->set_width( 100 ),
+
+                    Field::make( 'text', 'subject', 'Subject' )
+                        ->set_default_value( 'Jane Doe Contact Form Message' )
+                        ->set_help_text( '' )
+                        ->set_width( 100 ),
+
+                    Field::make( 'text', 'recipient_name', 'Recipient Name' )
+                        ->set_default_value( 'Jane Doe' )
+                        ->set_help_text( '' )
+                        ->set_width( 100 ),
+
+                    Field::make( 'text', 'recipient_email', 'Recipient Email' )
+                        ->set_default_value( 'contact@janedoe.com' )
+                        ->set_help_text( '' )
+                        ->set_width( 100 ),
+
+                    Field::make( 'complex', 'labels', 'Labels' )
+                        ->set_help_text( 'The labels on the client form.' )
+                        ->add_fields( add_crb_key_value_group() )
+                        ->set_default_value( set_contact_form_labels() )
+                        ,
+
+                    Field::make( 'complex', 'client_statuses', 'Client Statuses' )
+                        ->set_help_text( 'Client side verification statuses when using the client form.' )
+                        ->add_fields( add_crb_key_value_group( 'textarea' ) )
+                        ->set_default_value( set_contact_form_client_statuses() ),
+
+                    Field::make( 'complex', 'server_statuses', 'Server Statuses' )
+                        ->set_help_text( 'Response from the server when sending the form data from the client.' )
+                        ->add_fields( add_crb_key_value_group( 'textarea' ) )
+                        ->set_default_value( set_contact_form_server_statuses() )
+                ] )
+                ->set_help_text( 'Mail settings for receiving emails from users when they use the contact form.' )
+                // https://docs.carbonfields.net/learn/fields/complex.html#config-methods-2
+                // https://stackoverflow.com/a/38084493/413225
+                ->set_header_template( 'Contact Form: <%- _.startCase(slug) %>' )
+
+        ] )
 
         ;
 

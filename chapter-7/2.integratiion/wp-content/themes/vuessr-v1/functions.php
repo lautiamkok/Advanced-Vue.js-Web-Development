@@ -25,9 +25,9 @@ if (function_exists('add_theme_support')) {
 }
 
 add_action( 'wp_enqueue_scripts', function() {
-    wp_enqueue_script('module-1', get_template_directory_uri() . '/dist/client/assets/index.44e1c329.js', null, null, null);
-    wp_enqueue_script('module-2', get_template_directory_uri() . '/dist/client/assets/vendor.ddbece1d.js', null, null, null);
-    wp_enqueue_style('style-1', get_template_directory_uri() . '/dist/client/assets/index.020c467a.css');
+    wp_enqueue_script('module-1', get_template_directory_uri() . '/dist/client/assets/index.5a333543.js', null, null, null);
+    wp_enqueue_script('module-2', get_template_directory_uri() . '/dist/client/assets/vendor.b14f4388.js', null, null, null);
+    wp_enqueue_style('style-1', get_template_directory_uri() . '/dist/client/assets/index.cfe8c3c5.css');
 });
 
 // Change the script tag and return it.
@@ -63,18 +63,21 @@ function crb_load () {
     \Carbon_Fields\Carbon_Fields::boot();
 }
 
-include 'inc/metabox/carbon-fields/utils.php';
-include 'inc/metabox/carbon-fields/meta.php';
-include 'inc/metabox/carbon-fields/theme-options.php';
+include 'inc/metabox/carbon-fields/config.php';
+include 'inc/metabox/carbon-fields/commons.php';
+include 'inc/metabox/carbon-fields/fields/theme-options.php';
+include 'inc/metabox/carbon-fields/fields/meta.php';
 
 /**
  * Include APIs.
  *
  */
 include 'inc/api/commons.php';
-include 'inc/api/get/post-items.php';
-include 'inc/api/get/post-item.php';
-include 'inc/api/get/page-item.php';
+include 'inc/api/get/post/items.php';
+include 'inc/api/get/post/item.php';
+include 'inc/api/get/page/contact.php';
+include 'inc/api/get/page/item.php';
+include 'inc/api/post/message.php';
 
 // Disable Gutenberg Completely
 // disable for posts

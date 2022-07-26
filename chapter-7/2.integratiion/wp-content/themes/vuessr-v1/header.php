@@ -20,8 +20,8 @@ $path = isset($parsed_url['path']) ? $parsed_url['path'] : '';
 $app_url = 'http://localhost:3000' . $path;
 
 $result = get_web_page($app_url);
-$head_tags = $result['response']['headTags'];
-$app_html = $result['response']['appHtml'];
+$head_tags = isset($result['response']['headTags']) ? $result['response']['headTags'] : '';
+$app_html = isset($result['response']['appHtml']) ? $result['response']['appHtml'] : '';
 
 // Set the app HTML to the WP cache.
 // https://developer.wordpress.org/reference/functions/wp_cache_set/

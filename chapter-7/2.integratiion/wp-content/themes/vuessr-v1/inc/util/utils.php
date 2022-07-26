@@ -87,3 +87,52 @@ function get_web_page($url) {
     $result['response'] = json_decode($response, true);
     return $result;
 }
+
+// Get an item from the haystack.
+function get_haystack_item(string $needle = '', array $haystack = [], string $column = 'slug') {
+    if (!$needle) {
+        return false;
+    }
+    if (is_countable($haystack) === false || count($haystack) === 0) {
+        return false;
+    }
+
+    // Get the index.
+    $index = array_search($needle, array_column($haystack, $column));
+    if ($index === false) {
+        return false;
+    }
+
+    return $haystack[$index];
+}
+
+// Get the value from key-value metabox.
+function get_key_value($needle = '', $haystack = []) {
+    if (!$needle) {
+        return false;
+    }
+    if (is_countable($haystack) === false || count($haystack) === 0) {
+        return false;
+    }
+
+    // Get the index.
+    $index = array_search($needle, array_column($haystack, 'key'));
+    if ($index === false) {
+        return false;
+    }
+
+    return $haystack[$index]['val'];
+}
+
+// Array to string with line breaks.
+function array_to_string($array) {
+    $output = implode("\n", array_map( // double quotes needed.
+        function ($value, $key) {
+            return sprintf("%s: %s", $key, $value);
+        },
+        $array,
+        array_keys($array)
+    ));
+
+    return $output;
+}

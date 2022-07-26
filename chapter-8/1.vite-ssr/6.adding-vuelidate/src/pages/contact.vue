@@ -1,7 +1,7 @@
 <template>
   <h1>{{ title }}</h1>
 
-  <p v-bind:class="{ 'error': response.status != 'ok' }">
+  <p class="status" v-bind:class="{ 'error': response.status != 'ok' }">
   {{ response.message }}
   </p>
 
@@ -29,13 +29,13 @@
     </p>
 
     <p v-bind:class="{ 'error': v$.name.$errors.length }">
-      <label for="name">Name: </label>
+      <label for="name">{{ labels.name }}: </label>
       <input
         v-model.trim="name"
         v-on:blur="v$.name.$touch"
         type="text"
         name="name"
-        placeholder="Name"
+        v-bind:placeholder="labels.required"
       >
       <div v-for="error of v$.name.$errors" :key="error.$uid">
         <div>{{ error.$message }}</div>
@@ -43,13 +43,13 @@
     </p>
 
     <p v-bind:class="{ 'error': v$.email.$errors.length }">
-      <label for="email">Email: </label>
+      <label for="email">{{ labels.email }}: </label>
       <input
         v-model.trim="email"
         v-on:blur="v$.email.$touch"
         type="email"
         name="email"
-        placeholder="Email"
+        v-bind:placeholder="labels.required"
       >
       <div v-for="error of v$.email.$errors" :key="error.$uid">
         <div>{{ error.$message }}</div>
@@ -57,13 +57,13 @@
     </p>
 
     <p v-bind:class="{ 'error': v$.telephone.$errors.length }">
-      <label for="telephone">Telephone: </label>
+      <label for="telephone">{{ labels.phone }}: </label>
       <input
         v-model.number="telephone"
         v-on:blur="v$.telephone.$touch"
         type="text"
         name="telephone"
-        placeholder="Telephone"
+        v-bind:placeholder="labels.required"
       >
       <div v-for="error of v$.telephone.$errors" :key="error.$uid">
         <div>{{ error.$message }}</div>
@@ -91,7 +91,7 @@
       <textarea
         v-model.trim="message"
         v-on:blur="v$.message.$touch"
-        placeholder="Write something"
+        v-bind:placeholder="labels.required"
         name="message"
       ></textarea>
       <div v-for="error of v$.message.$errors" :key="error.$uid">
@@ -155,7 +155,49 @@ import {
 import useFetch from '@/composables/use-fetch'
 import { throwError } from '@/modules/utils'
 
-const title = 'Contact'
+const title = ref(null)
+const contents = ref(null)
+
+const { data } = await useFetch(`/wp-json/api/v1/page/contact`)
+if (data === null) {
+  throwError('Sorry, we cannot find the requested page.', 404)
+}
+
+title.value = data.title
+contents.value = data.contents
+
+const arrayLabels = data.form.labels
+const arrayStatuses = data.form.statuses
+
+// Set input default labels.
+const labels = reactive({
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  required: 'required'
+})
+
+// Set input custom labels from Carbon Fields custom fields.
+if (arrayLabels.length > 0) {
+  labels.name = getKeyValue(arrayLabels, 'input_name')
+  labels.email = getKeyValue(arrayLabels, 'input_email')
+  labels.phone = getKeyValue(arrayLabels, 'input_phone')
+  labels.required = getKeyValue(arrayLabels, 'placeholder_required')
+}
+
+// Set input default statuses.
+const statuses = reactive({
+  nameInvalid: 'A value is needed',
+  emailInvalid: 'A value is needed',
+  phoneInvalid: 'A value is needed'
+})
+
+// Set input custom statuses from Carbon Fields custom fields.
+if (arrayStatuses.length > 0) {
+  statuses.nameInvalid = getKeyValue(arrayStatuses, 'name_invalid'),
+  statuses.emailInvalid = getKeyValue(arrayStatuses, 'email_invalid'),
+  statuses.phoneInvalid = getKeyValue(arrayStatuses, 'phone_invalid')
+}
 
 // Use ref objects and assign them to a reactive object.
 const honorific = ref('')
@@ -191,15 +233,17 @@ const rules = computed(() => {
       required
     }, // Matches form.honorific
     name: {
-      required,
+      // Add custom error message.
+      // https://vuelidate-next.netlify.app/custom_validators.html#custom-error-messages
+      required: helpers.withMessage(statuses.nameInvalid, required),
       minLength: minLength(6)
     }, // Matches form.name
     email: {
-      required,
+      required: helpers.withMessage(statuses.emailInvalid, required),
       isEmail
     }, // Matches form.email
     telephone: {
-      required,
+       required: helpers.withMessage(statuses.phoneInvalid, required),
       numeric
     }, // Matches form.telephone
     message: {
@@ -212,8 +256,6 @@ const rules = computed(() => {
   }
   if (form.subscribe === 'yes') {
     localRules.agreement = {
-      // Custom error messages.
-      // https://vuelidate-next.netlify.app/custom_validators.html#custom-error-messages
       shouldBeChecked: helpers.withMessage('The Privacy Policy and Terms & Conditions must be checked.', and(
         () => form.agreement.includes('privacy policy'),
         () => form.agreement.includes('terms and conditions')
@@ -232,7 +274,7 @@ async function checkForm () {
   }
 
   // Post the data.
-  const { data } = await useFetch('/message', {
+  const { data } = await useFetch(`/wp-json/api/v1/message`, {
     method: 'POST',
     body: JSON.stringify({
       form
@@ -263,9 +305,19 @@ async function checkForm () {
     response.message = data.message
   }
 }
+
+// Get the value from key-value metabox.
+function getKeyValue(haystack, needle) {
+  const index = haystack.findIndex(item => item.key === needle)
+  return haystack[index].val
+}
 </script>
 
 <style scoped>
+.status {
+  color:  green;
+}
+
 .error {
   color: red;
 }
