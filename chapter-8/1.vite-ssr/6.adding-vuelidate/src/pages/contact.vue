@@ -307,7 +307,7 @@ async function submitForm () {
 }
 
 // Get the value from key-value metabox.
-function getKeyValue(haystack, needle) {
+function getKeyValue (haystack, needle) {
   const index = haystack.findIndex(item => item.key === needle)
   return haystack[index].val
 }
