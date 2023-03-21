@@ -105,5 +105,5 @@ A practical hands-on guide for creating single-page applications (SPAs) and serv
 
 If you are interested in this course, please check out [this page](https://lauthiamkok.net/origins/digital/advanced-vuejs-web-development) for how to purchase the course guide. Otherwise, feel free to sponsor this repository to keep it going and maintained through the following channels:
 
-* [Open Collective](https://opencollective.com/lautiamkoka)
+* [Open Collective](https://opencollective.com/lautiamkok)
 * [Ko-fi](https://ko-fi.com/lautiamkok)
