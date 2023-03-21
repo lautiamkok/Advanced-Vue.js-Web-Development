@@ -1,5 +1,7 @@
 # Advanced Vue.js Web Development
 
+> Build Vue.js 3 single-page (SPA) and universal (SSR) applications using Composition API
+
 This is the code repository for [**Advanced Vue.js Web Development**](https://lauthiamkok.net/origins/digital/advanced-vuejs-web-development), published in March 2022, authored by [Lau Tiam Kok](https://lauthiamkok.net/).
 
 ## Course Overview
