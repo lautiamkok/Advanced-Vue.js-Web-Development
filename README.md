@@ -4,7 +4,7 @@ This is the code repository for [**Advanced Vue.js Web Development**](https://la
 
 ## Course Overview
 
-A practical hands-on guide for creating single-page applications (SPAs) and server-side rendering applications (SSR) using Composition API from Vue.js 3. In this course, you will learn to create routes, pages, layouts, components, composables, middleware, and Vuex stores in your Vue applications. You will also learn to mock data using Markdown documents and a REST API for your Vue.js applications; integrate your Vue.js projects with Windi CSS and Less CSS preprocessor; handle static and dynamic assets such as images and fonts; create a shopping cart system using Vuex; handle and validate forms. And lastly, you will learn to migrate to Nuxt 3 with Composition API from Vue.js 3, as well as using Vue.js 3 for WordPress and Vite SSR for creating Vue.js 3 SSR applications.
+A practical hands-on guide for creating single-page applications (SPAs) and server-side rendering (SSR) applications using Composition API from Vue.js 3. In this course, you will learn to create routes, pages, layouts, components, composables, middleware, and Vuex stores in your Vue applications. You will also learn to mock data using Markdown documents and a REST API for your Vue.js applications; integrate your Vue.js projects with Windi CSS and Less CSS preprocessor; handle static and dynamic assets such as images and fonts; create a shopping cart system using Vuex; handle and validate forms. And lastly, you will learn to migrate to Nuxt 3 with Composition API from Vue.js 3, as well as using Vue.js 3 for WordPress and Vite SSR for creating Vue.js 3 SSR applications.
 
 ## Takeaway Skills
 
@@ -101,4 +101,7 @@ A practical hands-on guide for creating single-page applications (SPAs) and serv
     * Knowing Your Options
     * Testing Your Knowledge
 
-If you are interested in this course, please check out [this page](https://lauthiamkok.net/origins/digital/advanced-vuejs-web-development) for how to purchase the course guide.
+If you are interested in this course, please check out [this page](https://lauthiamkok.net/origins/digital/advanced-vuejs-web-development) for how to purchase the course guide. Otherwise, feel free to sponsor this repository to keep it going and maintained through the following channels:
+
+* [Open Collective](https://opencollective.com/lautiamkoka)
+* [Ko-fi](https://ko-fi.com/lautiamkok)
