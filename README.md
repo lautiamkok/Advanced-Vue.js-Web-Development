@@ -6,29 +6,31 @@ This is the code repository for [**Advanced Vue.js Web Development**](https://la
 
 ## Course Overview
 
-A practical hands-on guide for creating single-page applications (SPAs) and server-side rendering (SSR) applications using Composition API from Vue.js 3. In this course, you will learn to create routes, pages, layouts, components, composables, middleware, and Vuex stores in your Vue applications. You will also learn to mock data using Markdown documents and a REST API for your Vue.js applications; integrate your Vue.js projects with Windi CSS and Less CSS preprocessor; handle static and dynamic assets such as images and fonts; create a shopping cart system using Vuex; handle and validate forms. And lastly, you will learn to migrate to Nuxt 3 with Composition API from Vue.js 3, as well as using Vue.js 3 for WordPress and Vite SSR for creating Vue.js 3 SSR applications.
+A practical hands-on guide for creating single-page applications (SPAs), server-side rendering (SSR) applications, and universal applications using Composition API from Vue.js 3. In this course, you will learn to create routes, pages, layouts, components, composables, middleware, plugins, utils, and Pinia stores in your Vue applications. You will also learn to integrate your Vue.js projects with Windi CSS and Less CSS preprocessor; handle static and dynamic assets such as images and fonts; create a data-persistent shopping cart system using Pinia; validate forms and handle errors in your Vue.js applications. And lastly, you will learn to migrate to Nuxt.js 3 with Composition API from Vue.js 3, as well as using Vue.js 3 for WordPress and Vite SSR for creating Vue.js 3 SSR applications.
 
 ## Takeaway Skills
 
-* Create Vue.js applications using Vue CLI and Vite
+* Create Vue.js SPAs and SSR applications using Vite
 
 * Create routes, pages, and layouts with Vue Router
 
-* Create dynamic layouts with Vue Router, Mitt, and Vuex
+* Create dynamic layouts with Vue Router, middleware, and dynamic components
 
-* Create a shopping cart system with Vuex
+* Create a data-persistent shopping cart system with Pinia
 
 * Lazy-load components and images
 
 * Auto-generate application routes from the file system
 
-* Auto-import components, composables, and APIs on-demand
-
-* Mock data and a REST API with Markdown documents
+* Auto-import components, composables, utils, and APIs on-demand
 
 * Use Windi CSS and Less in Vue.js applications
 
-* Handle static and dynamic assets
+* Handle static and dynamic assets with composables and plugins
+
+* Create custom form inputs with `v-model` 
+
+* Validate forms with Vuelidate
 
 * Create Vue.js applications for WordPress
 
@@ -36,11 +38,13 @@ A practical hands-on guide for creating single-page applications (SPAs) and serv
 
 * Use WordPress as a headless CMS
 
-* Integrate Vite SSR with WordPress
+* Integrate Vue.js SPA and MPA (Multi-Page App) with WordPress
+
+* Integrate Vite SSR and Vue SSR with WordPress
 
 * Manage document head tags for SEO and Open Graph
 
-* Handle errors in Vue.js SPA and Vue.js SSR
+* Handle errors in Vue.js SPAs and Vue.js SSR applications
 
 * Learn basic Nuxt.js 3 and handle errors in Nuxt.js applications
 
