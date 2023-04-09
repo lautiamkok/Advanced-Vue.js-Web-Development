@@ -16,7 +16,9 @@ A practical hands-on guide for creating single-page applications (SPAs), server-
 
 * Create dynamic layouts with Vue Router, middleware, and dynamic components
 
-* Create a data-persistent shopping cart system with Pinia
+* Create a data-persistent (client-only) shopping cart system with Pinia
+
+* Create a data-persistent (client-server) shopping cart system with composables
 
 * Lazy-load components and images
 

@@ -9,7 +9,7 @@ export default {
     let dirname = null
     
     // Loop components and install them with camalized method name.
-    Object.entries(components).forEach(([path, component]) => {
+    Object.entries(components).forEach(([path, component], index) => {
       // Get the top dirname from the first item.
       if (index === 0) {
         const file = path.split('/').pop()

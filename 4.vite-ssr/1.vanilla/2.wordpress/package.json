@@ -3,6 +3,8 @@
   "type": "module",
   "scripts": {
     "dev": "node server",
+    "build": "npm run build:client && npm run build:server",
+    "build:wordpress": "npm run build:client:wordpress && npm run build:server:wordpress",
     "build:client": "vite build --outDir dist/client --base=/dist/client/ --ssrManifest",
     "build:server": "vite build --outDir dist/server --base=/dist/client/ --ssr src/entry-server",
     "build:client:wordpress": "vite build --outDir dist/client --base=/wp-content/themes/vuessr-v2/dist/client/ --ssrManifest",
@@ -14,13 +16,13 @@
     "@vuelidate/core": "^2.0.0-alpha.41",
     "@vuelidate/validators": "^2.0.0-alpha.29",
     "@vueuse/head": "^1.0.25",
+    "connect": "^3.7.0",
     "ofetch": "^1.0.0",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
-    "h3": "^1.5.0",
     "unimport": "^3.0.2",
     "vite": "^4.1.1",
     "vite-plugin-pages": "^0.28.0"

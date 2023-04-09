@@ -19,20 +19,12 @@ const menu = [
     path: '/about'
   },
   {
-    title: 'Users',
-    path: '/users'
+    title: 'Shop',
+    path: '/shop'
   },
   {
-    title: 'Blog (404 Demo)',
-    path: '/blog'
-  },
-  {
-    title: 'Contact (Error Demo 1)',
-    path: '/contact'
-  },
-  {
-    title: 'Login (Error Demo 2)',
-    path: '/login'
+    title: 'Cart',
+    path: '/cart'
   }
 ]
 </script>

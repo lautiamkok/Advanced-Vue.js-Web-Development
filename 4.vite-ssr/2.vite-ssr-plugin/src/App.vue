@@ -3,46 +3,12 @@
   <nav-main/>
   <router-view v-slot="{ Component }">
     <Suspense>
-      <error-boundary>
-        <component :is="Component" />
-      </error-boundary>
+      <component :is="Component" />
     </Suspense>
   </router-view>
 </template>
 
 <script setup>
-const route = useRoute()
-const { raw, error, skip } = useError()
-const appBaseUrl = import.meta.env.VITE_APP_BASE_URL
-
-// Reset error when route changes. Or, use the afterEach global guard in
-// `router.js`.
-watch(
-  () => route.path,
-  async (to, from) => {
-    // Un-comment to see the log.
-    // console.log('to =', to)
-    // console.log('from =', from)
-
-    if (error.value) {
-      // Reset the raw error data.
-      raw.value = false
-
-      // Skip reading the error data from the window object.
-      skip.value = true
-
-      // Send an HTTP request to clear the error on the server side. Vite SSR
-      // plugin only allows GET method. So use GET only to send requests.
-      await fetch(`${appBaseUrl}/log`, {
-        method: 'GET',
-        headers: {
-          'x-clear-error': 'true'
-        },
-      })
-    }
-  }
-)
-
 // Set default head.
 // https://github.com/vueuse/head
 useHead({

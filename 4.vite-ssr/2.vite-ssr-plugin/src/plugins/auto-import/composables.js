@@ -13,13 +13,7 @@ export default {
         .pop()
         .replace(/\.\w+$/, '')
       name = camalize(name)
-      console.log('name =', name)
-      // console.log('composable.default =', composable.default)
       app.config.globalProperties[name] = composable.default
-
-      // app.config.globalProperties.useXxx = (str) => {
-      //   return str
-      // }
     })
   }
 }

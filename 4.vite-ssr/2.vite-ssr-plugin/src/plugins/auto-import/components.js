@@ -6,16 +6,25 @@ export default {
     // `globEager` only can except static string. No dynamic string.
     const components = import.meta.globEager('/src/components/auto-import/**')
 
+    let dirname = null
+    
     // Loop components and install them with camalized method name.
-    Object.entries(components).forEach(([path, component]) => {
-      // Remove '/src/components/auto-import/' from string first.
+    Object.entries(components).forEach(([path, component], index) => {
+      // Get the top dirname from the first item.
+      if (index === 0) {
+        const file = path.split('/').pop()
+        dirname = path.split(file)[0]
+      }
+
+      // Remove the top dirname from string first.
       let name = path
-        .split('/src/components/auto-import/')
+        .split(dirname)
         .pop()
 
-      // Replace `/` with `-`.s
+      // Replace all `/` occurrences with `-`.
+      // Remove the `.vue` extension.
       name = name
-        .replace(/\//, '-')
+        .replace(/\//g, '-')
         .replace(/\.\w+$/, '')
       
       // Pascalise the string.

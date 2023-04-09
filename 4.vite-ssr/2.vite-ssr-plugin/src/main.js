@@ -18,14 +18,6 @@ export default viteSSR (App,
   }, 
   ({ url, app, router, initialState, request, isClient, writeResponse, redirect }) => {
     const head = createHead()
-    const { raw } = useError()
-
-    // Write in server.
-    if (import.meta.env.SSR) {
-      // Send the query to the `error` reactive to clear the error on the server
-      // side.
-      useError(request)
-    }
 
     app.use(AutoImportComponents)
     app.use(AutoImportComposables)
@@ -36,12 +28,9 @@ export default viteSSR (App,
     // and `composables` directories, etc, that are not caught in the `try-catch`
     // block.
     app.config.errorHandler = async (err, vm, info) => {
-      // console.log('status caught at the app level: ', err.status)
-      // console.log('message caught at the app level: ', err.message)
-      // console.log('stack caught at the app level: ', err.stack)
-
-      err.final = true
-      raw.value = err
+      console.log('status caught at the app level: ', err.status)
+      console.log('message caught at the app level: ', err.message)
+      console.log('stack caught at the app level: ', err.stack)
     }
 
     // https://github.com/frandiox/vite-ssr#head-tags-and-global-attributes

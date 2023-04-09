@@ -23,6 +23,14 @@ const menu = [
     path: '/users'
   },
   {
+    title: 'Shop (Composables)',
+    path: '/shop'
+  },
+  {
+    title: 'Cart (Composables)',
+    path: '/cart'
+  },
+  {
     title: 'Blog (404 Demo 1)',
     path: '/blog'
   },
@@ -35,8 +43,8 @@ const menu = [
     path: '/login'
   },
   {
-    title: 'Cart (Error Demo 3)',
-    path: '/cart'
+    title: 'Profile (Error Demo 3)',
+    path: '/profile'
   }
 ]
 </script>

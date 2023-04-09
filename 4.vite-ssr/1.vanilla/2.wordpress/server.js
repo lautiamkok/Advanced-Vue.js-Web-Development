@@ -9,23 +9,17 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import { createServer as createViteServer } from 'vite'
 import { createServer } from 'node:http'
-import { 
-  createApp, 
-  eventHandler, 
-  toNodeListener, 
-  fromNodeMiddleware, 
-  setResponseHeader, 
-  setResponseStatus
-} from 'h3'
+import connect from 'connect'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const resolve = (p) => path.resolve(__dirname, p)
 
-async function init (
+async function bootstrap (
   isProd = process.env.NODE_ENV === 'production',
   isWordpress = process.env.NODE_PROD === 'wordpress'
 ) {
-  const app = createApp()
+  // https://github.com/senchalabs/connect
+  const app = connect()
 
   // Create Vite server in middleware mode and configure the app type as
   // 'custom', disabling Vite's own HTML serving logic so parent server
@@ -37,12 +31,10 @@ async function init (
 
   // Use vite's connect instance as middleware
   // If you use your own express router (express.Router()), you should use router.use
-  app.use(fromNodeMiddleware(vite.middlewares))
+  app.use(vite.middlewares)
 
-  app.use(eventHandler(async event => {
-    // Serve index.html as follows:
-    const url = event.node.req.url
-    const req = event.node.req
+  app.use(async (req, res) => {
+    const url = req.url
 
     try {
       // 1. Read index.html
@@ -101,55 +93,48 @@ async function init (
         .replace(`{{ headTags }}`, headTags)
         .replace(`{{ htmlAttrs }}`, htmlAttrs)
 
-      if (!isWordpress) {
-        // Set the response header content type: json.
-        // https://www.jsdocs.io/package/h3#setResponseHeader
-        setResponseHeader(
-          event,
-          'Content-Type', 
-          'text/html'
-        )
-      }
-
-      // Set the response status code: 200, 404, 500, etc.
-      // https://www.jsdocs.io/package/h3#setResponseStatus
-      setResponseStatus(event, status)
-
       // Just return a json if it is built for WordPress.
       if (isWordpress) {
-        return {
+        // Set the response header content type: application/json.
+        res.setHeader('Content-Type', 'application/json')
+
+        // Set the response status code: 200, 404, 500, etc.
+        res.writeHead(status)
+
+        const data = {
           preloadLinks,
           ssrContext,
           appHtml,
           headTags,
           htmlAttrs
         }
-      }
 
-      // 6. Send the rendered HTML back.
-      return html
-    } catch (error) {
-      // Return the captured error as json.
-      const status = error.statusCode || 500
-      const name = error.name || 'Internal Server Error'
-      const message = error.message || '500 error occurred'
-      const stack = error.stack || null
-      
-      setResponseStatus(event, status)
-      return {
-        status,
-        name,
-        message,
-        stack
+        // End the res here.
+        res.end(JSON.stringify(data))
+      } else {
+        // Set the response header content type: text/html.
+        res.setHeader('Content-Type', 'text/html')
+
+        // Set the response status code: 200, 404, 500, etc.
+        res.writeHead(status)
+
+        // 6. Send the rendered HTML back.
+        res.end(html)
       }
+    } catch (e) {
+      vite && vite.ssrFixStacktrace(e)
+      console.log(e.stack)
+      res.writeHead(500)
+      res.end(e.stack)
     }
-  }))
+  })
 
+  const host = 'localhost'
   const port = 3000
-  const server = createServer(toNodeListener(app))
-  server.listen(port, () => {
-    console.log(`Server started: http://localhost:${port}`)
+  const server = createServer(app)
+  server.listen(port, host, () => {
+    console.log(`Server is running on http://${host}:${port}`)
   })
 }
 
-init()
+bootstrap()

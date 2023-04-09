@@ -6,17 +6,11 @@ import fs from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import path from 'path'
 import { createServer } from 'node:http'
-import { 
-  createApp, 
-  eventHandler, 
-  toNodeListener, 
-  fromNodeMiddleware, 
-  setResponseHeader, 
-  setResponseStatus 
-} from 'h3'
+import connect from 'connect'
 import serveStatic from 'serve-static'
 
-const app = createApp()
+// https://github.com/senchalabs/connect
+const app = connect()
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const resolve = (p) => path.resolve(__dirname, p)
 
@@ -34,15 +28,13 @@ const manifest = JSON.parse(
 for (const asset of ssr.assets || []) {
   app.use(
     `/${asset}`,
-    fromNodeMiddleware(serveStatic(path.join(__dirname, `./dist/client/${asset}`)))
+    serveStatic(path.join(__dirname, `./dist/client/${asset}`))
   )
 }
 
 // Everything else is treated as a "rendering request"
-app.use(eventHandler(async event => {
-  const request = event.node.req
-  const response = event.node.res
-  const url = request.originalUrl
+app.use(async (request, response) => {
+  const url = request.url
 
   // This is the server renderer we just built.
   // const { default: renderPage } = (await import('./dist/server/main.js'))
@@ -61,23 +53,13 @@ app.use(eventHandler(async event => {
     // initialState: { ... } // <- This would also be available
   })
 
-  // Set the response header content type: json.
-  // https://www.jsdocs.io/package/h3#setResponseHeader
-  setResponseHeader(
-    event,
-    'Content-Type', 
-    'text/html'
-  )
-
-  // Set the response status code: 404, 500, etc.
-  // https://www.jsdocs.io/package/h3#setResponseStatus
-  setResponseStatus(event, status || 200)
-
-  return html
-}))
+  response.setHeader('Content-Type', 'text/html')
+  response.writeHead(status || 200)
+  response.end(html)
+})
 
 const port = 3000
-const server = createServer(toNodeListener(app))
+const server = createServer(app)
 server.listen(port, () => {
   console.log(`Server started: http://localhost:${port}`)
 })

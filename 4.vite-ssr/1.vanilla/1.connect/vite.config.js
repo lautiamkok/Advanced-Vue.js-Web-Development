@@ -37,4 +37,9 @@ export default defineConfig({
       '@': resolve(__dirname, './src'),
     },
   },
+
+  // Don't minify script as it does not work well with global components.
+  build: {
+    minify: false,
+  }
 })
