@@ -4,17 +4,16 @@
 import { defineStore } from 'pinia'
 
 export const useCounterStore = defineStore('counter', () => {
-  // Persist the state between the server and client sides through cookies. Only
-  // cookies are SSR-friendly. Others like localstorage only work on the
-  // client (browser). If you intend to use a browser storage, make sure it
-  // runs on the client side only.
   const days = 1
-  const count = useCookie('count', {
+  const options = {
     maxAge: days * 24 * 60 * 60
     // Or:
     // days
-  })
-  count.value = count.value || 0
+  }
+  const { get, observe } = useCookie(options)
+  const value = get('count')
+  const count = ref(JSON.parse(value) || 0)
+  observe(count, 'count')
 
   const doubleCount = computed(() => count.value * 2)
 

@@ -46,8 +46,8 @@ async function addItem (item) {
   }
   items.value.push(item)
 
-  // Push items to `localstorage` and to the server.
-  pushItems(items) 
+  // Store items to `localstorage` and send them to the server.
+  storeItems(items) 
 
   response.message = 'Added ok'
   response.data = item
@@ -68,8 +68,8 @@ async function updateItem (item) {
   items.value[index].quantity = item.quantity
   items.value[index].cost = item.cost
 
-  // Push items to `localstorage` and to the server.
-  pushItems(items)
+  // Store items to `localstorage` and send them to the server.
+  storeItems(items)
 
   response.message = 'Updated ok'
   response.data = item
@@ -89,21 +89,22 @@ function deleteItem (item) {
   // Delete the item from store.
   items.value.splice(index, 1)
 
-  // Push items to `localstorage` and to the server.
-  pushItems(items) 
+  // Store items to `localstorage` and send them to the server.
+  storeItems(items) 
 }
 
 function empty () {
   items.value = []
 
-  // Push items to `localstorage` and to the server.
-  pushItems(items)
+  // Store items to `localstorage` and send them to the server.
+  storeItems(items)
 }
 
-function pushItems (items) {
+function storeItems (items) {
+  const id = import.meta.env.VITE_APP_CART_ID
   const body = JSON.stringify(unref(items))
 
-  localStorage.setItem('cart', body)
+  localStorage.setItem(id, body)
   fetch('', {
     method: 'POST',
     headers: {
@@ -111,6 +112,10 @@ function pushItems (items) {
     },
     body
   })
+
+  if (unref(items).length === 0) {
+    localStorage.removeItem(id)
+  }
 }
 
 export default () => {

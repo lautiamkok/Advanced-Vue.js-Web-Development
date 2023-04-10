@@ -6,22 +6,40 @@ export default {
     // `globEager` only can except static string. No dynamic string.
     const components = import.meta.globEager('/src/components/auto-import/**')
 
-    // Loop components and install them with camalized method name.
+    let array = []
+    let dirname = null
+
+    // Loop components and create pairs with a length count.
+    Object.entries(components).forEach(([path, component]) => {
+      const length = path.split('/').length
+      array.push({ path, length })
+    })
+
+    // Get the pair has the lowest value in its `length` key.
+    const lowest = array.reduce((previous, current) => {
+      return current.length < previous.length ? current : previous;
+    })
+
+    // Find the entry dirname dynamically, which is `/src/components/auto-import/`.
+    const file = lowest.path.split('/').pop()
+    dirname = lowest.path.split(file)[0]
+
+    // Loop components and install them with camalCase name.
     Object.entries(components).forEach(([path, component]) => {
       // Remove '/src/components/auto-import/' from string first.
       let name = path
-        .split('/src/components/auto-import/')
+        .split(dirname)
         .pop()
 
       // Replace `/` with `-`.s
       name = name
-        .replace(/\//, '-')
+        .replace(/\//g, '-')
         .replace(/\.\w+$/, '')
       
       // Pascalise the string.
-      name = pascalize(name)
+      name = pascalCase(name)
 
-      // Register the component with the pascalized name.
+      // Register the component with the pascalCase name.
       app.component(name, component.default)
     })
   }

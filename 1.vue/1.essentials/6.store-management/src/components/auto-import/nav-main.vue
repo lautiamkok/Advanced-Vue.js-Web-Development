@@ -15,15 +15,15 @@ const menu = [
     path: '/'
   },
   {
-    title: 'Counter',
+    title: 'Counter (cookie)',
     path: '/counter'
   },
   {
-    title: 'Shop',
+    title: 'Shop (localstorage)',
     path: '/shop'
   },
   {
-    title: 'Cart',
+    title: 'Cart (localstorage)',
     path: '/cart'
   }
 ]

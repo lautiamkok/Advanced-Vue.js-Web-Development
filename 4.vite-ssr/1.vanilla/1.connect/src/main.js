@@ -5,30 +5,14 @@ import '@/styles'
 
 // Create the vue app here to be shared between server and client.
 import App from '@/App.vue'
-import Err from '@/Err.vue'
+import Void from '@/Void.vue'
 import { createSSRApp, useSSRContext } from 'vue'
 import { createHead } from '@vueuse/head'
 import { createRouter } from '@/router'
 import AutoImportComponents from '@/plugins/auto-import/components'
 import AutoImportComposables from '@/plugins/auto-import/composables'
 import useCart from '@/composables/use-cart'
-
-// https://nodejs.bootcss.com/node-request-data/
-async function normalizeBody (req) {
-  let body = []
-  const requestMethods = ['PATCH', 'POST', 'PUT', 'DELETE']
-  if (requestMethods.includes(req.method)) {
-    for await (const chunk of req) {
-      body += chunk
-    }
-
-    if (req.headers['content-type']?.includes('application/json')) {
-      body = JSON.parse(body)
-    }
-  }
-
-  return body
-}
+import { normalizeBody } from '@/utils/utils'
 
 async function bootstrap (req) {
   const { items } = useCart()
@@ -39,17 +23,22 @@ async function bootstrap (req) {
     }
     items.value = await normalizeBody(req)
   } else {
-    const cart = localStorage.getItem("cart")
-    items.value =  JSON.parse(cart)
+    const id = import.meta.env.VITE_APP_CART_ID
+    const cart = localStorage.getItem(id)
+    items.value =  JSON.parse(cart) ?? []
   }
 }
 
 export function createApp (req = null) {
-  const isServerClearError = import.meta.env.SSR 
-    && req.method === 'POST'
-    && req.headers['x-clear-error']
-  const component = isServerClearError ? Err : App
-  const app = createSSRApp(component)
+  const component = (req) => {
+    const requestMethods = ['PATCH', 'POST', 'PUT', 'DELETE']
+    if (import.meta.env.SSR && requestMethods.includes(req.method)) {
+      return Void
+    }
+    return App
+  }
+
+  const app = createSSRApp(component(req))
   const head = createHead()
   const router = createRouter()
   const { raw } = useError()

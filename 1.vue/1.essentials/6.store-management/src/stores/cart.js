@@ -4,14 +4,9 @@
 import { defineStore } from 'pinia'
 
 export const useCartStore = defineStore('cart', () => {
-  const days = 1
-  const items = useCookie('cart', {
-    maxAge: days * 24 * 60 * 60
-    // Or:
-    // days
-  })
-  items.value = items.value || []
-
+  const id = import.meta.env.VITE_APP_CART_ID
+  const cart = localStorage.getItem(id)
+  const items = ref(JSON.parse(cart) || [])
   const response = reactive({
     message: '',
     data: ''
@@ -52,6 +47,9 @@ export const useCartStore = defineStore('cart', () => {
     }
     items.value.push(item)
 
+    // Store items to `localstorage`.
+    storeItems(items)
+
     response.message = 'Added ok'
     response.data = item
     await delay(3000)
@@ -71,6 +69,9 @@ export const useCartStore = defineStore('cart', () => {
     items.value[index].quantity = item.quantity
     items.value[index].cost = item.cost
 
+    // Store items to `localstorage`.
+    storeItems(items)
+
     response.message = 'Updated ok'
     response.data = item
     await delay(3000)
@@ -88,10 +89,25 @@ export const useCartStore = defineStore('cart', () => {
 
     // Delete the item from store.
     items.value.splice(index, 1)
+
+    // Store items to `localstorage`.
+    storeItems(items)
   }
 
   function empty () {
     items.value = []
+
+    // Store items to `localstorage`.
+    storeItems(items)
+  }
+
+  function storeItems (items) { 
+    const body = JSON.stringify(unref(items))
+
+    localStorage.setItem(id, body)
+    if (unref(items).length === 0) {
+      localStorage.removeItem(id)
+    }
   }
 
   return {
