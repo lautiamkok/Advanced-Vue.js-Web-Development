@@ -11,3 +11,10 @@ export function pascalCase (str) {
   str = camalCase(str)
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
+
+export function createError (options = {}) {
+  const error = new Error(options.message)
+  error.status = options.status
+  error.name = options.name
+  throw error
+}

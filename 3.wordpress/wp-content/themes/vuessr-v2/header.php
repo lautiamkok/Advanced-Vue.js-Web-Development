@@ -45,7 +45,7 @@ $favicon_url = get_image_url($favicon_id);
   <?php wp_head(); ?>
   <link rel="shortcut icon" href="<?php echo $favicon_url; ?>" type="image/x-icon">
 
-  <script type="module" crossorigin src="/wp-content/themes/vuessr-v2/dist/client/assets/index-3a6a474b.js"></script>
+  <script type="module" crossorigin src="/wp-content/themes/vuessr-v2/dist/client/assets/index-e062f3af.js"></script>
   <link rel="stylesheet" href="/wp-content/themes/vuessr-v2/dist/client/assets/index-da947b8e.css">
 </head>
 

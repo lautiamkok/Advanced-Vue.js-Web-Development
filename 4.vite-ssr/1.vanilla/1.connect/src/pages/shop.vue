@@ -2,7 +2,7 @@
   <h2>
     Shop
   </h2>
-  <ul v-if="!error">
+  <ul v-if="data">
     <button @click="empty">
       Empty Cart
     </button>
@@ -19,7 +19,11 @@
 
 <script setup>
 const { empty } = useCart()
-const { data, error } = await useF3tch(`/products/?limit=10`, {
-  baseURL: 'https://dummyjson.com'
-})
+const { data } = await useF3tch(`/products/?limit=10`)
+if (!data) {
+  createError({
+    status: 500,
+    message: 'No data!'
+  })
+}
 </script>

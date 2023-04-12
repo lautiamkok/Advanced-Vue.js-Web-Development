@@ -12,7 +12,7 @@
 
 <script setup>
 const route = useRoute()
-const { raw, error } = useError()
+const { error } = useError()
 
 watch(
   () => route.path,
@@ -23,7 +23,7 @@ watch(
 
     if (error.value) {
       // Reset the raw error data.
-      raw.value = false
+      error.value = false
     }
   }
 )

@@ -2,24 +2,52 @@
   <p>
     Hello World!
   </p>
-  <h2>Plugins</h2>
-  <p>$apiBaseUrl: {{ $apiBaseUrl }}</p>
-  <p>$foo: {{ $foo }}</p>
-  <p>$hey: {{ $hey('Jane') }}</p>
+  <h2>
+    Plugins
+  </h2>
+  <p>
+    $apiBaseUrl: {{ $apiBaseUrl }}
+  </p>
+  <p>
+    $foo: {{ $foo }}
+  </p>
+  <p>
+    $hey: {{ $hey('Jane') }}
+  </p>
   <ClientOnly>
-    <p>$hi (client only): {{ $hi('Molly') }}</p>
+    <p>
+      $hi (client only): {{ $hi('Molly') }}
+    </p>
   </ClientOnly>
 
-  <h2>Utils</h2>
-  <p>doSomething: {{ doSomething() }}</p>
+  <h2>
+    Utils
+  </h2>
+  <p>
+    doSomething: {{ doSomething() }}
+  </p>
 
-  <h2>Composables</h2>
-  <p>Named export `useA`: {{ a }}</p>
-  <p>Named export `useB`: {{ b }}</p>
-  <p>Named export `useC`: {{ c }}</p>
-  <p>Named export `useD`: {{ d }}</p>
-  <p>Default export `useFoo`: {{ foo }}</p>
-  <p>Nested default export `useBaz`: {{ useBaz() }}</p>
+  <h2>
+    Composables
+  </h2>
+  <p>
+    Named export `useA`: {{ a }}
+  </p>
+  <p>
+    Named export `useB`: {{ b }}
+  </p>
+  <p>
+    Named export `useC`: {{ c }}
+  </p>
+  <p>
+    Named export `useD`: {{ d }}
+  </p>
+  <p>
+    Default export `useFoo`: {{ foo }}
+  </p>
+  <p>
+    Nested default export `useBaz`: {{ useBaz() }}
+  </p>
 </template>
 
 <script setup>

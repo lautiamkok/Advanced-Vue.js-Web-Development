@@ -19,6 +19,6 @@ export { useB, useC }
 export default function () {
   // Just like plugins, composables can access the data from Nuxt config file.
   const runtimeConfig = useRuntimeConfig()
-  const apiBaseUrl = runtimeConfig.apiBaseUrl
+  const apiBaseUrl = runtimeConfig.public['apiBaseUrl']
   return apiBaseUrl
 }

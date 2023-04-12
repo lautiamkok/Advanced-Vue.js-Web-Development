@@ -14,7 +14,7 @@
         </NuxtLink>
       </li>
     </ul>
-    <NuxtPage/>
+    <NuxtPage />
   </NuxtLayout>
 </template>
 

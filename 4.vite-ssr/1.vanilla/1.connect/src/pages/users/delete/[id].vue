@@ -20,28 +20,20 @@
       {{ response.message }}
     </p>
   </div>
-  <error-handler v-else />
 </template>
 
 <script setup>
-import useError from '@/composables/use-error'
-import useF3tch from '@/composables/use-f3tch'
-
 const router = useRouter()
 const route = useRoute()
 const id = route.params.id
 const response = reactive({})
 
-// Handle errors in the page level -- this component.
-const { raw } = useError()
-const user = ref()
-
-try {
-  const { data, error } = await useF3tch(`/users/${id}`)
-  user.value = data
-  raw.value = error
-} catch (error) {
-  raw.value = error
+const { data: user } = await useF3tch(`/users/${id}`)
+if (!user) {
+  createError({
+    status: 500,
+    message: 'No data!'
+  })
 }
 
 async function remove () {

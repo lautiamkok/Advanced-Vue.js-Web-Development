@@ -2,7 +2,7 @@
   <h2>
     Shop
   </h2>
-  <ul v-if="!error">
+  <ul v-if="data">
     <button @click="store.empty">
       Empty Cart
     </button>
@@ -21,5 +21,11 @@
 import { useCartStore } from '@/stores/cart'
 
 const store = useCartStore()
-const { data, error } = await useF3tch(`/products/?limit=10`)
+const { data } = await useF3tch(`/products/?limit=10`)
+if (!data) {
+  createError({
+    status: 500,
+    message: 'No data!'
+  })
+}
 </script>

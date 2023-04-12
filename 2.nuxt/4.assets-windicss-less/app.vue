@@ -9,7 +9,7 @@
       </NuxtLink>
     </li>
   </ul>
-  <NuxtPage/>
+  <NuxtPage />
 </template>
 
 <script setup>

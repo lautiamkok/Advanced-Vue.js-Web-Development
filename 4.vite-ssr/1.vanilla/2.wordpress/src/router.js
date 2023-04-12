@@ -6,7 +6,6 @@ import {
   createWebHistory
 } from 'vue-router'
 import routes from '~pages'
-import clearError from '@/middleware/clear-error'
 
 export function createRouter () {
   const router = _createRouter({
@@ -15,8 +14,6 @@ export function createRouter () {
     history: import.meta.env.SSR ? createMemoryHistory() : createWebHistory(),
     routes
   })
-
-  // router.afterEach(clearError)
 
   return router
 }

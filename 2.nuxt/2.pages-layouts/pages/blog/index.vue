@@ -1,9 +1,11 @@
 <template>
-  <h2>{{ title }}</h2>
+  <h2>
+    Blog Index
+  </h2>
 </template>
 
 <script setup>
-const title = 'Blog Index'
-
-setPageLayout('default')
+if (process.client) {
+  setPageLayout('default')
+}
 </script>

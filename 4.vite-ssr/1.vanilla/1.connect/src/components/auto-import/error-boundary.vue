@@ -11,12 +11,12 @@
   <div>
     <div v-if="error">
       <h2>
-        {{ error.status }} Error
+        {{ error.status }} {{ error.name }}
       </h2>
       <p>
-       {{ error.name }} - {{ error.message }}
+       {{ error.message }}
       </p>
-      <pre>
+      <pre v-if="dev">
         {{ error.stack }}
       </pre>
       <p>
@@ -30,15 +30,12 @@
   </div>
 </template>
 
-<!-- <script>
-export default defineComponent({
-  inheritAttrs: false
-})
-</script> -->
-
 <script setup>
 import { useSSRContext } from 'vue'
 const { error } = useError()
+
+// https://vitejs.dev/guide/env-and-mode.html#env-variables
+const dev = import.meta.env.DEV
 
 if (import.meta.env.SSR) {
   const ctx = useSSRContext()

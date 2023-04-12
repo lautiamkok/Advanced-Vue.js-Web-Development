@@ -1,7 +1,5 @@
 <template>
-  <h2>{{ title }}</h2>
+  <h2>
+    Blog Index
+  </h2>
 </template>
-
-<script setup>
-const title = 'Blog Index'
-</script>

@@ -1,5 +1,7 @@
 <template>
-  <h2>{{ title }}</h2>
+  <h2>
+    Blog
+  </h2>
   <ul>
     <li v-for="(item, index) in menu">
       <NuxtLink :to="item.path">
@@ -7,12 +9,11 @@
       </NuxtLink>
     </li>
   </ul>
-  <router-view :key="route.path"></router-view>
+  <NuxtPage :key="route.path" />
 </template>
 
 <script setup>
 const route = useRoute()
-const title = 'Blog'
 const menu = [
   {
     title: 'Post 1',

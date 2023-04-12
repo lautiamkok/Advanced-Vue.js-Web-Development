@@ -11,6 +11,11 @@ const posts = [
     path: '/blog',
     layout: 'dark',
     contents: '<p>Welcome to my blog!</p>'
+  },
+  {
+    path: '/blog/post-2',
+    layout: 'light',
+    contents: '<p>Content Post 2</p>'
   }
 ]
 

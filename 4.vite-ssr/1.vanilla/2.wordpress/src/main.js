@@ -5,22 +5,54 @@ import '@/styles'
 
 // Create the vue app here to be shared between server and client.
 import App from '@/App.vue'
-import Err from '@/Err.vue'
+import Void from '@/Void.vue'
 import { createSSRApp, useSSRContext } from 'vue'
 import { createHead } from '@vueuse/head'
 import { createRouter } from '@/router'
 import AutoImportComponents from '@/plugins/auto-import/components'
 import AutoImportComposables from '@/plugins/auto-import/composables'
+import { normalizeBody } from '@/utils/utils'
+
+async function bootstrap (req) {
+  const { error, normalizeError } = useError()
+  if (import.meta.env.SSR) {
+    // Don't process if no `content-type` in the header.
+    if (!req.headers['content-type']) {
+      return
+    }
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
+    const url = req.url
+    const string = url.substring(url.indexOf('?'))
+    const params = new URLSearchParams(string)
+
+    if (params.has('error') && params.get('error') === 'set') {
+      error.value = await normalizeBody(req)
+    }
+  } else {
+    const errorClient = window.context.error
+    // Use `Object.keys` to make sure the error is not empty, or use `JSON.stringify`:
+    // Object.keys(obj).length === 0 // true => empty
+    // JSON.stringify(obj) === '{}' // true => empty
+    if (window.context.error && JSON.stringify(errorClient) !== '{}') {
+      error.value = errorClient
+    }
+  }
+}
 
 export function createApp (req = null) {
-  const isServerClearError = import.meta.env.SSR 
-    && req.method === 'POST'
-    && req.headers['x-clear-error']
-  const component = isServerClearError ? Err : App
-  const app = createSSRApp(component)
+  const component = (req) => {
+    const requestMethods = ['PATCH', 'POST', 'PUT', 'DELETE']
+    if (import.meta.env.SSR && requestMethods.includes(req.method)) {
+      return Void
+    }
+    return App
+  }
+
+  const app = createSSRApp(component(req))
   const head = createHead()
   const router = createRouter()
-  const { raw } = useError()
+  const { error, normalizeError } = useError()
 
   app.use(AutoImportComponents)
   app.use(AutoImportComposables)
@@ -34,12 +66,30 @@ export function createApp (req = null) {
   app.config.errorHandler = (err, vm, info) => {
     // Un-comment to see the log.
     // console.log('status caught at the app level: ', err.status)
+    // console.log('name caught at the app level: ', err.name)
     // console.log('message caught at the app level: ', err.message)
     // console.log('stack caught at the app level: ', err.stack)
+    
+    // Normalize the error data from the original error object.
+    const failure = normalizeError(err)
+    error.value = failure
 
-    err.final = true
-    raw.value = err
+    if (!import.meta.env.SSR) {
+      const appBaseUrl = import.meta.env.VITE_APP_BASE_URL
+      const body = JSON.stringify(failure)
+
+      fetch(`${appBaseUrl}?error=set`, {
+        method: 'POST',
+        headers: {
+          'Content-Type':'application/json'
+        },
+        body
+      })
+    }
   }
+
+  // Populate cart's items on the server and client sides.
+  bootstrap(req)
 
   return { app, router, head }
 }

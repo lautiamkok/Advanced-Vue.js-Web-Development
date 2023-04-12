@@ -1,5 +1,7 @@
 <template>
-  <p>Hello Contact!</p>
+  <p>
+    Hello Contact!
+  </p>
 </template>
 
 <script setup>

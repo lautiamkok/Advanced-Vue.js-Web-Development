@@ -1,7 +1,7 @@
 <template>
-  <site-header/>
-  <nav-main/>
-  <NuxtPage/>
+  <site-header />
+  <nav-main />
+  <NuxtPage />
 </template>
 
 <script setup>
@@ -12,7 +12,7 @@ onErrorCaptured(err => {
   // Catch the error and send it to the `error.vue` page.
   // https://nuxt.com/docs/api/utils/show-error#showerror
   showError({ 
-    statusCode: err.status || 500, 
+    statusCode: err.status || err.statusCode || 500, 
     statusMessage: `${err.name} - ${err.message}`,
     stack: err.stack
   })

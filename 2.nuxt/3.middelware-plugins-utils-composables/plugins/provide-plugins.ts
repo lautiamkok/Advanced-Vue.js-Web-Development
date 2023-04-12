@@ -2,8 +2,8 @@
 export default defineNuxtPlugin(nuxtApp => {
   // Plugins can access the data from Nuxt config file.
   const runtimeConfig = useRuntimeConfig()
-  const apiBaseUrl = runtimeConfig.apiBaseUrl
-
+  const apiBaseUrl = runtimeConfig.public['apiBaseUrl']
+  
   // You can use composables within Nuxt plugins.
   // https://nuxt.com/docs/guide/directory-structure/plugins#using-composables-within-plugins
   const foo = useFoo()

@@ -16,13 +16,33 @@ import { normalizeBody } from '@/utils/utils'
 
 async function bootstrap (req) {
   const { items } = useCart()
+  const { error, normalizeError } = useError()
   if (import.meta.env.SSR) {
     // Don't process if no `content-type` in the header.
     if (!req.headers['content-type']) {
       return
     }
-    items.value = await normalizeBody(req)
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
+    const url = req.url
+    const string = url.substring(url.indexOf('?'))
+    const params = new URLSearchParams(string)
+
+    if (params.has('error') && params.get('error') === 'set') {
+      error.value = await normalizeBody(req)
+    }
+    if (params.has('cart') && params.get('cart') === 'set') {
+      items.value = await normalizeBody(req)
+    }
+    
   } else {
+    const errorClient = window.context.error
+    // Use `Object.keys` to make sure the error is not empty, or use `JSON.stringify`:
+    // Object.keys(obj).length === 0 // true => empty
+    // JSON.stringify(obj) === '{}' // true => empty
+    if (window.context.error && JSON.stringify(errorClient) !== '{}') {
+      error.value = errorClient
+    }
     const id = import.meta.env.VITE_APP_CART_ID
     const cart = localStorage.getItem(id)
     items.value =  JSON.parse(cart) ?? []
@@ -41,7 +61,7 @@ export function createApp (req = null) {
   const app = createSSRApp(component(req))
   const head = createHead()
   const router = createRouter()
-  const { raw } = useError()
+  const { error, normalizeError } = useError()
 
   app.use(AutoImportComponents)
   app.use(AutoImportComposables)
@@ -57,9 +77,23 @@ export function createApp (req = null) {
     // console.log('status caught at the app level: ', err.status)
     // console.log('message caught at the app level: ', err.message)
     // console.log('stack caught at the app level: ', err.stack)
+    
+    // Normalize the error data from the original error object.
+    const failure = normalizeError(err)
+    error.value = failure
 
-    err.final = true
-    raw.value = err
+    if (!import.meta.env.SSR) {
+      const appBaseUrl = import.meta.env.VITE_APP_BASE_URL
+      const body = JSON.stringify(failure)
+
+      fetch(`${appBaseUrl}?error=set`, {
+        method: 'POST',
+        headers: {
+          'Content-Type':'application/json'
+        },
+        body
+      })
+    }
   }
 
   // Populate cart's items on the server and client sides.

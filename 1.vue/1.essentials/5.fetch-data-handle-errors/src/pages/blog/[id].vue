@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!error">
+  <div v-if="post">
     <h1>
       {{ post.title }}
     </h1>
@@ -9,7 +9,12 @@
 
 <script setup>
 const route = useRoute()
-const { raw } = useError()
-const { data: post, error } = await useF3tch(`/posts/${route.params.id}`)
-raw.value = error
+const { data: post } = await useF3tch(`/posts/${route.params.id}`)
+if (!post) {
+  createError({
+    status: 404,
+    name: 'Post Not Found!',
+    message: 'Post not found!'
+  })
+}
 </script>

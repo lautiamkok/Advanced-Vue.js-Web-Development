@@ -101,14 +101,15 @@ function empty () {
 }
 
 function storeItems (items) {
+  const appBaseUrl = import.meta.env.VITE_APP_BASE_URL
   const id = import.meta.env.VITE_APP_CART_ID
   const body = JSON.stringify(unref(items))
 
   localStorage.setItem(id, body)
-  fetch('', {
+  fetch(`${appBaseUrl}?cart=set`, {
     method: 'POST',
     headers: {
-      'Content-Type':'application/json',
+      'Content-Type':'application/json'
     },
     body
   })

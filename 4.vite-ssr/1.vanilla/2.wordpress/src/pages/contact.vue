@@ -145,8 +145,13 @@ const statuses = reactive({
 let arrayLabels = []
 let arrayStatuses = []
 
-const { data, error } = await useF3tch(`/wp-json/api/v1/page/contact`)
-raw.value = error
+const { data } = await useF3tch(`/wp-json/api/v1/page/contact`)
+if (!data) {
+  createError({
+    status: 500,
+    message: 'No data!'
+  })
+}
 if (data) {
   title.value = data.title
   contents.value = data.contents
@@ -228,11 +233,16 @@ async function submitForm () {
   }
 
   // Post the data.
-  const { data, error } = await useF3tch(`/wp-json/api/v1/contact/message`, {
+  const { data } = await useF3tch(`/wp-json/api/v1/contact/message`, {
     method: 'POST',
     body: form
   })
-  raw.value = error
+  if (!data) {
+    createError({
+      status: 500,
+      message: 'No data!'
+    })
+  }
 
   // Reset form.
   if (data && data.status === 'ok') {

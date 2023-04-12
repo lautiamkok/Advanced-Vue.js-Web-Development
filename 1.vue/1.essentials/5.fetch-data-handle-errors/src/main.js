@@ -6,7 +6,7 @@ import App from '@/App.vue'
 import AutoImportComponents from '@/plugins/auto-import/components'
 import AutoImportComposables from '@/plugins/auto-import/composables'
 
-const { raw } = useError()
+const { error, normalizeError } = useError()
 const app = createApp(App)
 app
   .use(AutoImportComponents)
@@ -23,8 +23,9 @@ app
     // console.log('message caught at the app level: ', err.message)
     // console.log('stack caught at the app level: ', err.stack)
 
-    err.final = true
-    raw.value = err
+    // Normalize the error data from the original error object.
+    const failure = normalizeError(err)
+    error.value = failure
   }
 
 app.mount('#app')

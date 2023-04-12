@@ -12,10 +12,10 @@ export function pascalCase (str) {
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
-export function throwError (err) {
-  const error = new Error(err)
-  error.status = err.status || 500
-  error.message = err.data ? err.data.message : err.message
+export function createError (options = {}) {
+  const error = new Error(options.message)
+  error.status = options.status
+  error.name = options.name
   throw error
 }
 
@@ -38,7 +38,10 @@ export function isEmpty (data) {
     return !Object.entries(data).length
   }
 
-  throwError(`"${data}" is not an object or array`, 500)
+  createError({
+    status: 500,
+    message: `"${data}" is not an object or array`
+  })
 }
 
 // Promisise setTimeout.

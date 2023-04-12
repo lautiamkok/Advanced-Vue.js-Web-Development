@@ -1,5 +1,7 @@
 <template>
-  <p>Hello About!</p>
+  <p>
+    Hello About!
+  </p>
 </template>
 
 <script setup>
@@ -7,5 +9,7 @@
 definePageMeta({
   layout: 'light',
 })
-setPageLayout('light')
+if (process.client) {
+  setPageLayout('light')
+}
 </script>

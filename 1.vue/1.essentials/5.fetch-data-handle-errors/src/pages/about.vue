@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!error">
+  <div v-if="data">
     <h2>
       {{ title }}
     </h2>
@@ -10,17 +10,19 @@
 <script setup>
 const title = ref(null)
 const contents = ref(null)
-
-const { raw } = useError()
-const { data, error } = await useF3tch('/posts/2')
+const { data } = await useF3tch('/posts/2')
+if (!data) {
+  createError({
+    status: 500,
+    message: 'No data!'
+  })
+}
 
 // Unwrap the ref data.
 // https://vuejs.org/api/reactivity-utilities.html#unref
 const unwrapped = unref(data)
-if (!unref(error)) {
-  // Populate the properties.
-  title.value = unwrapped.title
-  contents.value = unwrapped.body
-}
-raw.value = error
+
+// Populate the properties.
+title.value = unwrapped.title
+contents.value = unwrapped.body
 </script>

@@ -25,22 +25,6 @@ const menu = [
   {
     title: 'Contact',
     path: '/contact'
-  },
-  {
-    title: 'Users (404 Demo 1)',
-    path: '/users'
-  },
-  {
-    title: 'Feedback (Error Demo 1)',
-    path: '/feedback'
-  },
-  {
-    title: 'Shop (Error Demo 2)',
-    path: '/shop'
-  },
-  {
-    title: 'Cart (Error Demo 3)',
-    path: '/cart'
   }
 ]
 </script>

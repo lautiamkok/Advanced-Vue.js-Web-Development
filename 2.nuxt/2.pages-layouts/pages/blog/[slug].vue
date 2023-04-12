@@ -56,18 +56,11 @@ contents.value = found.contents
 // Change the top-level layout dynamically. Note that this option will always
 // make the top-level flickers a bit when refreshing the page.
 // https://nuxt.com/docs/guide/directory-structure/layouts#changing-the-layout-dynamically
-definePageMeta({
-  layout: false,
-})
+// definePageMeta({
+//   layout: false,
+// })
 
-// `setPageLayout` should not be called to change the layout on the server
-// within a component as this will cause hydration errors. Also, it should not
-// be called to change the layout during hydration as this will cause hydration
-// errors. So set the layout after hydration on a timeout on the client side.
-// https://nuxt.com/docs/api/composables/use-nuxt-app#ishydrating
 if (process.client) {
-  setTimeout(() => {
-    setPageLayout(found.layout)
-  }, 1)
+  setPageLayout(found.layout)
 }
 </script>

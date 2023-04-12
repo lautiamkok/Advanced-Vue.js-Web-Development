@@ -7,26 +7,25 @@ import { renderToString } from 'vue/server-renderer'
 import { renderHeadToString } from '@vueuse/head'
 
 export async function render (url, manifest, req) {
-  // Capture any error from the server side. For example, when an error occurs
-  // in the `<template>` block.
+  // Capture any error on the server side during rending the app to HTML string. For example:
+  // renderAppToHtml(urlx, manifest, req) => ReferenceError: urlx is not defined
   try {
     return await renderAppToHtml(url, manifest, req)
-  } catch (error) { 
-    return await renderAppToHtml(url, manifest, req, error)
+  } catch (err) { 
+    return await renderAppToHtml(url, manifest, req, err)
   }
 }
 
-async function renderAppToHtml (url, manifest, req, error = false) {
+async function renderAppToHtml (url, manifest, req, err = false) {
   const { app, router, head } = createApp(req)
 
-  if (error) {
+  if (err) {
     // Set the error on the server side.
-    // console.log('error =', error)
-    const { raw } = useError()
-    raw.value = error
+    const { error, normalizeError } = useError()
+    error.value = normalizeError(err)
   } else {
-    // Send the `x-clear-error` header in the `request` object to the `error`
-    // reactive to clear the error on the server side.
+    // Send the `?error=delete` in the `request` object to the `error` reactive
+    // to clear the error on the server side.
     useError(req)
   }
 

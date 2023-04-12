@@ -35,8 +35,6 @@
 </template>
 
 <script setup>
-import useF3tch from '@/composables/use-f3tch'
-
 const router = useRouter()
 const route = useRoute()
 const user = reactive({
@@ -50,7 +48,7 @@ async function create () {
    // Adding a new user will not add it into the server. It will simulate a POST
    // request and will return the new created user with a new id
    // https://dummyjson.com/docs/users
-  const { data, error } = await useF3tch(`/users/add`, {
+  const { data } = await useF3tch(`/users/add`, {
     method: 'POST',
 
     // Need to add json content type so the server recieves a json object
