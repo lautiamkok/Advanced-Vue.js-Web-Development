@@ -59,7 +59,7 @@ async function bootstrap (
     //    required, and provides efficient invalidation similar to HMR.
     let render
     if (!isProd) {
-      render = (await vite.ssrLoadModule('/src/entry-server.js')).render
+      render = (await vite.ssrLoadModule('/src/entry-server.ts')).render
     } else {
       render = (await import('./dist/server/entry-server.js')).render
     }
@@ -75,7 +75,7 @@ async function bootstrap (
       : {}
     const { 
       appHtml, 
-      status, 
+      statusCode, 
       ctx, 
       preloadLinks, 
       headTags, 
@@ -92,7 +92,7 @@ async function bootstrap (
       .replace(`{{ htmlAttrs }}`, htmlAttrs)
 
     res.setHeader('Content-Type', 'text/html')
-    res.writeHead(status)
+    res.writeHead(statusCode)
     res.end(html)
   })
 

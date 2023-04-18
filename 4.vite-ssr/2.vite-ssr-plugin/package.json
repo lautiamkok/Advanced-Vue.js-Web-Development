@@ -9,7 +9,6 @@
   "dependencies": {
     "@vueuse/head": "^0.7.6",
     "connect": "^3.7.0",
-    "ofetch": "^1.0.0",
     "serve-static": "^1.15.0",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"

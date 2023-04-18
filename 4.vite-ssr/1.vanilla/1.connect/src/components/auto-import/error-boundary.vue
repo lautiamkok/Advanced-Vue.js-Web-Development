@@ -11,7 +11,7 @@
   <div>
     <div v-if="error">
       <h2>
-        {{ error.status }} {{ error.name }}
+        {{ error.statusCode }} {{ error.name }}
       </h2>
       <p>
        {{ error.message }}
@@ -41,6 +41,6 @@ if (import.meta.env.SSR) {
   const ctx = useSSRContext()
 
   ctx.error = error.value
-  ctx.httpStatus = error.value.status
+  ctx.statusCode = error.value.statusCode
 }
 </script>

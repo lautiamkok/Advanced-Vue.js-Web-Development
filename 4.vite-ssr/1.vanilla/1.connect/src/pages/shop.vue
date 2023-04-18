@@ -22,7 +22,7 @@ const { empty } = useCart()
 const { data } = await useF3tch(`/products/?limit=10`)
 if (!data) {
   createError({
-    status: 500,
+    statusCode: 500,
     message: 'No data!'
   })
 }

@@ -61,7 +61,7 @@ async function bootstrap (
       //    required, and provides efficient invalidation similar to HMR.
       let render
       if (!isProd) {
-        render = (await vite.ssrLoadModule('/src/entry-server.js')).render
+        render = (await vite.ssrLoadModule('/src/entry-server.ts')).render
       } else {
         render = (await import('./dist/server/entry-server.js')).render
       }
@@ -77,7 +77,7 @@ async function bootstrap (
         : {}
       const { 
         appHtml, 
-        status, 
+        statusCode, 
         ctx, 
         preloadLinks, 
         headTags, 
@@ -98,8 +98,8 @@ async function bootstrap (
         // Set the response header content type: application/json.
         res.setHeader('Content-Type', 'application/json')
 
-        // Set the response status code: 200, 404, 500, etc.
-        res.writeHead(status)
+        // Set the response statusCode code: 200, 404, 500, etc.
+        res.writeHead(statusCode)
 
         const data = {
           preloadLinks,
@@ -115,12 +115,13 @@ async function bootstrap (
         // Set the response header content type: text/html.
         res.setHeader('Content-Type', 'text/html')
 
-        // Set the response status code: 200, 404, 500, etc.
-        res.writeHead(status)
+        // Set the response statusCode code: 200, 404, 500, etc.
+        res.writeHead(statusCode)
 
         // 6. Send the rendered HTML back.
         res.end(html)
       }
+
     } catch (e) {
       vite && vite.ssrFixStacktrace(e)
       console.log(e.stack)
@@ -138,3 +139,14 @@ async function bootstrap (
 }
 
 bootstrap()
+
+// Basic `connect` example:
+// var app = connect()
+
+// // respond to all requests
+// app.use(function(req, res){
+//   res.end('Hello from Connect!\n')
+// })
+
+// //create node.js http server and listen on port
+// createServer(app).listen(3000)

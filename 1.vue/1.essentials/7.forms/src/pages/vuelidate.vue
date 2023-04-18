@@ -3,7 +3,7 @@
     Form Validation with Vuelidate
   </h2>
 
-  <p v-bind:class="{ 'error': response.status != 'ok' }">
+  <p v-bind:class="{ 'error': response.statusText != 'ok' }">
   {{ response.message }}
   </p>
 
@@ -220,7 +220,8 @@ const form = reactive({
   agreement
 })
 const response = reactive({
-  status: '',
+  statusCode: '',
+  statusText: '',
   message: ''
 })
 
@@ -313,7 +314,8 @@ async function submitForm () {
   
   // Dummy response.
   const data = {
-    status: 'ok',
+    statusCode: 200,
+    statusText: 'ok',
     message: 'Sent OK!'
   }
   if (data === null) {
@@ -321,7 +323,7 @@ async function submitForm () {
   }
 
   // Reset form.
-  if (data.status === 'ok') {
+  if (data.statusText === 'ok') {
     // Reset Vuelidate.
     v$.value.$reset()
 
@@ -334,7 +336,8 @@ async function submitForm () {
   }
 
   if (data) {
-    response.status = data.status
+    response.statusCode = data.statusCode
+    response.statusText = data.statusText
     response.message = data.message
   }
 }

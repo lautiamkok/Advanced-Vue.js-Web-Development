@@ -21,10 +21,17 @@ const date = ref(null)
 const contents = ref(null)
 const thumbnail = ref(null)
 
-const { data: post } = await useF3tch(`/wp-json/api/v1/post/${route.params.slug}`)
+const { data: post, error } = await useF3tch(`/wp-json/api/v1/post/${route.params.slug}`)
+if (error) {
+  createError({
+    statusCode: error.statusCode,
+    name: error.name,
+    message: error.message
+  })
+}
 if (!post) {
   createError({
-    status: 404,
+    statusCode: 404,
     name: 'Post Not Found!',
     message: 'Sorry, post not found!'
   })

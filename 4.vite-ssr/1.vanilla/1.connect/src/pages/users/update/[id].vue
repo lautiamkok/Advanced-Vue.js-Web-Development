@@ -34,10 +34,10 @@
       </li>
     </ul>
 
-    <p style="color: red;" v-if="response.status && response.status != 200">
+    <p style="color: red;" v-if="response.statusCode && response.statusCode != 200">
       {{ response.message }}
     </p>
-    <p style="color: blue;" v-if="response.status && response.status === 200">
+    <p style="color: blue;" v-if="response.statusCode && response.statusCode === 200">
       {{ response.message }}
     </p>
   </div>
@@ -52,7 +52,7 @@ const response = reactive({})
 const { data: user } = await useF3tch(`/users/${id}`)
 if (!user) {
   createError({
-    status: 500,
+    statusCode: 500,
     message: 'No data!'
   })
 }
@@ -60,18 +60,18 @@ async function update () {
    // Updating a user will not update it into the server. It will simulate a
    // PUT/PATCH request and will return the user with modified data.
    // https://dummyjson.com/docs/users
-  const { data } = await useF3tch(`/users/${id}`, {
+  const { data, error } = await useF3tch(`/users/${id}`, {
     method: 'PUT',
     body: unref(user)
   })
 
   if (!data) {
-    response.status = error.status
-    response.message = error.data ? error.data.message : error.message
+    response.statusCode = error.statusCode
+    response.message = error.message
     return
   }
 
-  response.status = 200
+  response.statusCode = 200
   response.message = 'Updated ok'
 }
  

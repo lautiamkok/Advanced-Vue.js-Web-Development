@@ -16,7 +16,7 @@
       </li>
     </ul>
 
-    <p style="color: red;" v-if="response.status && response.status != 200">
+    <p style="color: red;" v-if="response.statusCode && response.statusCode != 200">
       {{ response.message }}
     </p>
   </div>
@@ -31,7 +31,7 @@ const response = reactive({})
 const { data: user } = await useF3tch(`/users/${id}`)
 if (!user) {
   createError({
-    status: 500,
+    statusCode: 500,
     message: 'No data!'
   })
 }
@@ -46,8 +46,8 @@ async function remove () {
   })
 
   if (!data) {
-    response.status = error.status
-    response.message = error.data ? error.data.message : error.message
+    response.statusCode = error.statusCode
+    response.message = error.message
     return
   }
   router.push(`/users/`)

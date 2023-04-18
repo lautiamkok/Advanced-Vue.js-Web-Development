@@ -11,10 +11,17 @@
 const title = ref(null)
 const contents = ref(null)
 
-const { data } = await useF3tch(`/wp-json/api/v1/page/blog`)
+const { data, error } = await useF3tch(`/wp-json/api/v1/page/blog`)
+if (error) {
+  createError({
+    statusCode: error.statusCode,
+    name: error.name,
+    message: error.message
+  })
+}
 if (!data) {
   createError({
-    status: 500,
+    statusCode: 500,
     message: 'No data!'
   })
 }

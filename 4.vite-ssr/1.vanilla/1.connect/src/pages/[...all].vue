@@ -13,6 +13,6 @@
 import { useSSRContext } from 'vue'
 if (import.meta.env.SSR) {
   const ctx = useSSRContext()
-  ctx.httpStatus = 404
+  ctx.statusCode = 404
 }
 </script>

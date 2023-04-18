@@ -5,7 +5,7 @@
 
   <div v-html="contents" />
 
-  <p class="status" v-bind:class="{ 'error': response.status != 'ok' }">
+  <p class="status" v-bind:class="{ 'error': response.statusText != 'ok' }">
   {{ response.message }}
   </p>
 
@@ -121,7 +121,8 @@ const form = reactive({
   message
 })
 const response = reactive({
-  status: '',
+  statusCode: '',
+  statusText: '',
   message: ''
 })
 
@@ -145,10 +146,17 @@ const statuses = reactive({
 let arrayLabels = []
 let arrayStatuses = []
 
-const { data } = await useF3tch(`/wp-json/api/v1/page/contact`)
+const { data, error } = await useF3tch(`/wp-json/api/v1/page/contact`)
+if (error) {
+  createError({
+    statusCode: error.statusCode,
+    name: error.name,
+    message: error.message
+  })
+}
 if (!data) {
   createError({
-    status: 500,
+    statusCode: 500,
     message: 'No data!'
   })
 }
@@ -239,13 +247,13 @@ async function submitForm () {
   })
   if (!data) {
     createError({
-      status: 500,
+      statusCode: 500,
       message: 'No data!'
     })
   }
 
   // Reset form.
-  if (data && data.status === 'ok') {
+  if (data && data.statusText === 'ok') {
     // Reset Vuelidate.
     v$.value.$reset()
 
@@ -258,7 +266,8 @@ async function submitForm () {
   }
 
   if (data) {
-    response.status = data.status
+    response.statusCode = data.statusCode
+    response.statusText = data.statusText
     response.message = data.message
   }
 }
@@ -271,7 +280,7 @@ function getKeyValue (haystack, needle) {
 </script>
 
 <style scoped>
-.status {
+.statusCode {
   color:  green;
 }
 

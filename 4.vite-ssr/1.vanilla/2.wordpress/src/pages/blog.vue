@@ -17,10 +17,17 @@
 // So that the content can be updated when route has changed.
 const route = useRoute()
 
-const { data: posts } = await useF3tch(`/wp-json/api/v1/posts`)
+const { data: posts, error } = await useF3tch(`/wp-json/api/v1/posts`)
+if (error) {
+  createError({
+    statusCode: error.statusCode,
+    name: error.name,
+    message: error.message
+  })
+}
 if (!posts) {
   createError({
-    status: 500,
+    statusCode: 500,
     message: 'No data!'
   })
 }

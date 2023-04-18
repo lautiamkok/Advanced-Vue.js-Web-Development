@@ -12,7 +12,7 @@ const route = useRoute()
 const { data: post } = await useF3tch(`/posts/${route.params.id}`)
 if (!post) {
   createError({
-    status: 404,
+    statusCode: 404,
     name: 'Post Not Found!',
     message: 'Post not found!'
   })

@@ -14,7 +14,7 @@
     </ul>
   </p>
 
-  <p v-bind:class="{ 'error': response.status != 'ok' }">
+  <p v-bind:class="{ 'error': response.statusText != 'ok' }">
   {{ response.message }}
   </p>
 
@@ -181,7 +181,8 @@ const form = reactive({
   agreement
 })
 const response = reactive({
-  status: '',
+  statusCode: '',
+  statusText: '',
   message: ''
 })
 
@@ -234,7 +235,8 @@ async function checkForm () {
     
     // Dummy response.
     const data = {
-      status: 'ok',
+      statusCode: 200,
+      statusText: 'ok',
       message: 'Sent OK!'
     }
     if (data === null) {
@@ -242,7 +244,7 @@ async function checkForm () {
     }
 
     // Reset form.
-    if (data.status === 'ok') {
+    if (data.statusText === 'ok') {
       Object.entries(form).forEach(([key,value]) => {
         form[key] = ''
       })
@@ -251,7 +253,8 @@ async function checkForm () {
     }
 
     if (data) {
-      response.status = data.status
+      response.statusCode = data.statusCode
+      response.statusText = data.statusText
       response.message = data.message
     }
   }

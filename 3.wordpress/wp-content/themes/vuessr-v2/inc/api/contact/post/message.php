@@ -18,8 +18,8 @@ use PHPMailer\PHPMailer\Exception;
 // Create a course page's data.
 function send_message ($data) {
     // return [
-    //     'status' => 'ok',
-    //     'code' => 200,
+    //     'statusText' => 'ok',
+    //     'statusCode' => 200,
     //     'message' => 'OK!'
     // ];
 
@@ -32,8 +32,8 @@ function send_message ($data) {
     $forms = carbon_get_theme_option('forms');
     if (is_countable($forms) && count($forms) === 0) {
         return [
-            'status' => 'error',
-            'code' => 500,
+            'statusText' => 'error',
+            'statusCode' => 500,
             'message' => 'No mail setting is found.'
         ];
     }
@@ -70,18 +70,18 @@ function send_message ($data) {
     $mail->Body = $form_string;
 
     if (!$mail->send()) {
-        $status = 'error';
-        $code = 500;
+        $statusText = 'error';
+        $statusCode = 500;
         $message = get_key_value('sent_failed', $server_statuses);
     } else {
-        $status = 'ok';
-        $code = 200;
+        $statusText = 'ok';
+        $statusCode = 200;
         $message = get_key_value('sent_ok', $server_statuses);
     }
 
     return [
-        'status' => $status,
-        'code' => $code,
+        'statusText' => $statusText,
+        'statusCode' => $statusCode,
         'message' => $message
     ];
 }

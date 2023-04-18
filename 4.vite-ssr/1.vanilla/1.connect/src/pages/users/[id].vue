@@ -27,10 +27,17 @@
 <script setup>
 const route = useRoute()
 const id = route.params.id
-const { data: user } = await useF3tch(`/users/${id}`)
+const { data: user, error } = await useF3tch(`/users/${id}`)
+if (error) {
+  createError({
+    statusCode: error.statusCode,
+    name: error.name,
+    message: error.message
+  })
+}
 if (!user) {
   createError({
-    status: 500,
+    statusCode: 500,
     message: 'No data!'
   })
 }

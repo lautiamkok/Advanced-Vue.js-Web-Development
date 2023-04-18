@@ -11,7 +11,7 @@
   <div>
     <div v-if="error">
       <h2>
-        {{ error.status }} {{ error.name }}
+        {{ error.statusCode }} {{ error.name }}
       </h2>
       <p>
        {{ error.message }}

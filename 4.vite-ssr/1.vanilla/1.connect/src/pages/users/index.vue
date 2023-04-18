@@ -24,12 +24,19 @@
 
 <script setup>
 const users = ref()
-const { data } = await useF3tch('/users?limit=5')
+const { data, error } = await useF3tch('/users?limit=5')
+if (error) {
+  createError({
+    statusCode: error.statusCode,
+    name: error.name,
+    message: error.message
+  })
+}
 if (!data) {
   createError({
-    status: 500,
+    statusCode: 500,
     message: 'No data!'
   })
 }
-users.value = data ? data.users : data
+users.value = data.users ?? data
 </script>
