@@ -12,7 +12,7 @@ onErrorCaptured(err => {
   // Catch the error and send it to the `error.vue` page.
   // https://nuxt.com/docs/api/utils/show-error#showerror
   showError({ 
-    statusCode: err.statusCode || err.statusCode || 500, 
+    statusCode: err.statusCode || 500, 
     statusMessage: `${err.name} - ${err.message}`,
     stack: err.stack
   })

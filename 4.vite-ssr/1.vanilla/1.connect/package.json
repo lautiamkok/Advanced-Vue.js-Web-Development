@@ -4,18 +4,19 @@
   "scripts": {
     "dev": "node server",
     "build": "npm run build:client && npm run build:server",
-    "build:client": "vite build --outDir dist/client --base=/dist/client/ --ssrManifest",
-    "build:server": "vite build --outDir dist/server --base=/dist/client/ --ssr src/entry-server",
+    "build:client": "vite build --outDir dist/client --ssrManifest",
+    "build:server": "vite build --outDir dist/server --ssr src/entry-server",
     "start": "NODE_ENV=production node server"
   },
   "dependencies": {
     "@vueuse/head": "^1.0.25",
-    "connect": "^3.7.0",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
+    "connect": "^3.7.0",
+    "serve-static": "^1.15.0",
     "unimport": "^3.0.2",
     "vite": "^4.1.1",
     "vite-plugin-pages": "^0.28.0"

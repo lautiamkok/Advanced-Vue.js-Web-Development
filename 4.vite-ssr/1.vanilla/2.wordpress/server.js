@@ -21,60 +21,70 @@ async function bootstrap (
   // https://github.com/senchalabs/connect
   const app = connect()
 
-  // Create Vite server in middleware mode and configure the app type as
-  // 'custom', disabling Vite's own HTML serving logic so parent server
-  // can take control
-  const vite = await createViteServer({
-    server: { middlewareMode: true },
-    appType: 'custom'
-  })
+  // Read index.html.
+  let template
+  if (!isProd) {
+    template = fs.readFileSync(
+      path.resolve(__dirname, 'index.html'),
+      'utf-8'
+    )
+  } else {
+    template = fs.readFileSync(
+      path.resolve(__dirname, 'dist/client/index.html'),
+      'utf-8'
+    )
+  }
 
-  // Use vite's connect instance as middleware
-  // If you use your own express router (express.Router()), you should use router.use
-  app.use(vite.middlewares)
+  // The manifest json is required for preloading assets.
+  const manifest = isProd
+    ? JSON.parse(
+        fs.readFileSync(resolve('dist/client/ssr-manifest.json'), 'utf-8'),
+      )
+    : {}
+
+  // Don't run Vite on production.
+  let vite
+  if (!isProd) {
+    // Create Vite server in middleware mode and configure the app type as
+    // 'custom', disabling Vite's own HTML serving logic so parent server
+    // can take control
+    vite = await createViteServer({
+      server: { middlewareMode: true },
+      appType: 'custom'
+    })
+
+    // Use vite's connect instance as middleware
+    // If you use your own express router (express.Router()), you should use router.use
+    app.use(vite.middlewares)
+  } else {
+    // Serve the assets in the `dist/client` folder on production.
+    app.use(
+      (await import('serve-static')).default(resolve('dist/client'), {
+        index: false,
+      }),
+    )
+  }
 
   app.use(async (req, res) => {
     const url = req.url
 
     try {
-      // 1. Read index.html
-      let template
-      if (!isProd) {
-        template = fs.readFileSync(
-          path.resolve(__dirname, 'index.html'),
-          'utf-8'
-        )
-      } else {
-        template = fs.readFileSync(
-          path.resolve(__dirname, 'dist/client/index.html'),
-          'utf-8'
-        )
-      }
-
-      // 2. Apply Vite HTML transforms. This injects the Vite HMR client, and
-      //    also applies HTML transforms from Vite plugins, e.g. global preambles
-      //    from @vitejs/plugin-react
-      template = await vite.transformIndexHtml(url, template)
-
-      // 3. Load the server entry. vite.ssrLoadModule automatically transforms
-      //    your ESM source code to be usable in Node.js! There is no bundling
-      //    required, and provides efficient invalidation similar to HMR.
       let render
       if (!isProd) {
+        // Apply Vite HTML transforms. This injects the Vite HMR client, and also
+        // applies HTML transforms from Vite plugins.
+        template = await vite.transformIndexHtml(url, template)
+
+        // Load the server entry. vite.ssrLoadModule automatically transforms your
+        // ESM source code to be usable in Node.js! There is no bundling
+        // required, and provides efficient invalidation similar to HMR.
         render = (await vite.ssrLoadModule('/src/entry-server.ts')).render
       } else {
         render = (await import('./dist/server/entry-server.js')).render
       }
 
-      // 4. Render the app HTML. This assumes entry-server.js's exported `render`
-      //    function calls appropriate framework SSR APIs,
-      //    e.g. ReactDOMServer.renderToString()
-      //    The manifest json is required for preloading assets.
-      const manifest = isProd
-        ? JSON.parse(
-            fs.readFileSync(resolve('dist/client/ssr-manifest.json'), 'utf-8'),
-          )
-        : {}
+      // Render the app HTML. This assumes entry-server.js's exported `render`
+      // function calls appropriate framework SSR APIs.
       const { 
         appHtml, 
         statusCode, 
@@ -84,7 +94,7 @@ async function bootstrap (
         htmlAttrs
       } = await render(url, manifest, req)
 
-      // 5. Inject the app-rendered HTML into the template.
+      // Inject the app-rendered HTML into the template.
       const ssrContext = `<script>window.context = ${JSON.stringify(ctx)}</script>`
       const html = template
         .replace(`{{ preloadLinks }}`, preloadLinks)
@@ -121,7 +131,6 @@ async function bootstrap (
         // 6. Send the rendered HTML back.
         res.end(html)
       }
-
     } catch (e) {
       vite && vite.ssrFixStacktrace(e)
       console.log(e.stack)
@@ -133,7 +142,7 @@ async function bootstrap (
   const host = 'localhost'
   const port = 3000
   const server = createServer(app)
-  server.listen(port, host, () => {
+  server.listen(port, () => {
     console.log(`Server is running on http://${host}:${port}`)
   })
 }
