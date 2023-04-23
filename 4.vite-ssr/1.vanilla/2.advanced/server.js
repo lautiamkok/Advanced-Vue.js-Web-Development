@@ -1,5 +1,10 @@
 'use strict'
 
+// This example uses `connect` and `serve-static`. You need to change the `dev`
+// and `start` script in the `package.json` file to run this file. Also, you
+// must add `NODE_ENV=production` to the `start` script as follows:
+// `"start": "NODE_ENV=production node server"`
+
 // Vue server-side rendering (SSR).
 // https://vitejs.dev/guide/ssr.html
 // https://vuejs.org/guide/scaling-up/ssr.html
@@ -7,7 +12,6 @@
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { createServer as createViteServer } from 'vite'
 import { createServer } from 'node:http'
 import connect from 'connect'
 
@@ -47,7 +51,7 @@ async function bootstrap (
     // Create Vite server in middleware mode and configure the app type as
     // 'custom', disabling Vite's own HTML serving logic so parent server
     // can take control
-    vite = await createViteServer({
+    vite = await (await import('vite')).createServer({
       server: { middlewareMode: true },
       appType: 'custom'
     })
@@ -59,8 +63,8 @@ async function bootstrap (
     // Serve the assets in the `dist/client` folder on production.
     app.use(
       (await import('serve-static')).default(resolve('dist/client'), {
-        index: false,
-      }),
+        index: false
+      })
     )
   }
 
@@ -71,7 +75,7 @@ async function bootstrap (
     if (!isProd) {
       // Apply Vite HTML transforms. This injects the Vite HMR client, and also
       // applies HTML transforms from Vite plugins.
-      template = await vite.transformIndexHtml(url, template)
+      await vite.transformIndexHtml(url, template)
 
       // Load the server entry. vite.ssrLoadModule automatically transforms your
       // ESM source code to be usable in Node.js! There is no bundling

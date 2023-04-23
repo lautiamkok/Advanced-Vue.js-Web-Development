@@ -1,9 +1,10 @@
 'use strict'
 
-// Vue server-side rendering (SSR).
-// https://vitejs.dev/guide/ssr.html
-// https://vuejs.org/guide/scaling-up/ssr.html
-// https://github.com/vitejs/vite-plugin-vue/tree/main/playground/ssr-vue
+// This example uses `connect` and `serve-static`. You need to change the `dev`
+// and `start` script in the `package.json` file to run this file. Also, you
+// must add `NODE_ENV=production` to the `start` script as follows:
+// `"start": "NODE_ENV=production node server"`
+
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -45,19 +46,13 @@ async function bootstrap (
   // Don't run Vite on production.
   let vite
   if (!isProd) {
-    // Create Vite server in middleware mode and configure the app type as
-    // 'custom', disabling Vite's own HTML serving logic so parent server
-    // can take control
     vite = await createViteServer({
       server: { middlewareMode: true },
       appType: 'custom'
     })
 
-    // Use vite's connect instance as middleware
-    // If you use your own express router (express.Router()), you should use router.use
     app.use(vite.middlewares)
   } else {
-    // Serve the assets in the `dist/client` folder on production.
     app.use(
       (await import('serve-static')).default(resolve('dist/client'), {
         index: false,
@@ -71,20 +66,12 @@ async function bootstrap (
     try {
       let render
       if (!isProd) {
-        // Apply Vite HTML transforms. This injects the Vite HMR client, and also
-        // applies HTML transforms from Vite plugins.
-        template = await vite.transformIndexHtml(url, template)
-
-        // Load the server entry. vite.ssrLoadModule automatically transforms your
-        // ESM source code to be usable in Node.js! There is no bundling
-        // required, and provides efficient invalidation similar to HMR.
+        await vite.transformIndexHtml(url, template)
         render = (await vite.ssrLoadModule('/src/entry-server.ts')).render
       } else {
         render = (await import('./dist/server/entry-server.js')).render
       }
 
-      // Render the app HTML. This assumes entry-server.js's exported `render`
-      // function calls appropriate framework SSR APIs.
       const { 
         appHtml, 
         statusCode, 

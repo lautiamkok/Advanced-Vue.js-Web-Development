@@ -2,15 +2,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node server",
+    "dev": "node dev",
     "build": "npm run build:client && npm run build:server",
     "build:wordpress": "npm run build:client:wordpress && npm run build:server:wordpress",
     "build:client": "vite build --outDir dist/client --ssrManifest",
     "build:server": "vite build --outDir dist/server --ssr src/entry-server",
     "build:client:wordpress": "vite build --outDir dist/client --base=/wp-content/themes/vuessr-v2/dist/client/ --ssrManifest",
     "build:server:wordpress": "vite build --outDir dist/server --base=/wp-content/themes/vuessr-v2/dist/client/ --ssr src/entry-server",
-    "start": "NODE_ENV=production node server",
-    "start:wordpress": "NODE_ENV=production NODE_PROD=wordpress node server"
+    "start": "node start",
+    "start:wordpress": "NODE_PROD=wordpress node start"
   },
   "dependencies": {
     "@vuelidate/core": "^2.0.0-alpha.41",
@@ -21,8 +21,6 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
-    "connect": "^3.7.0",
-    "serve-static": "^1.15.0",
     "unimport": "^3.0.2",
     "vite": "^4.1.1",
     "vite-plugin-pages": "^0.28.0"
