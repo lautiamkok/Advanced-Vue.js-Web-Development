@@ -29,6 +29,5 @@
 </template>
 
 <script setup>
-// import CartItem from '@/components/auto-import/cart-item.vue'
 const { items, empty, sumQuantity, uniqueLength, sumCost } = useCart()
 </script>

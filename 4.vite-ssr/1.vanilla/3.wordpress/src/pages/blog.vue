@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav v-if="posts">
+    <nav v-if="data">
       <router-link
         :to="'/blog/' + item.slug"
         v-for="(item, index) in posts"
@@ -17,18 +17,19 @@
 // So that the content can be updated when route has changed.
 const route = useRoute()
 
-const { data: posts, error } = await useF3tch(`/wp-json/api/v1/posts`)
-if (error) {
-  createError({
-    statusCode: error.statusCode,
-    name: error.name,
-    message: error.message
+const { data, error } = await useF3tch(`/wp-json/api/v1/posts`)
+if (error.value) {
+  throwError({
+    statusCode: error.value.statusCode,
+    name: error.value.name,
+    message: error.value.message
   })
 }
-if (!posts) {
-  createError({
+if (!data.value) {
+  throwError({
     statusCode: 500,
     message: 'No data!'
   })
 }
+const posts = unref(data)
 </script>

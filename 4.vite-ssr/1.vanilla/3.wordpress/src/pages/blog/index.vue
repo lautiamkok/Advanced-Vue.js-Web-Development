@@ -12,40 +12,41 @@ const title = ref(null)
 const contents = ref(null)
 
 const { data, error } = await useF3tch(`/wp-json/api/v1/page/blog`)
-if (error) {
+if (error.value) {
   createError({
-    statusCode: error.statusCode,
-    name: error.name,
-    message: error.message
+    statusCode: error.value.statusCode,
+    name: error.value.name,
+    message: error.value.message
   })
 }
-if (!data) {
+if (!data.value) {
   createError({
     statusCode: 500,
     message: 'No data!'
   })
 }
-title.value = data.title
-contents.value = data.contents
+const post = unref(data)
+title.value = post.title
+contents.value = post.contents
 
 useHead({
-  title: data.meta.title,
+  title: post.meta.title,
   meta: [
     {
       name: 'description',
-      content: data.meta.description
+      content: post.meta.description
     },
     {
       property: 'og:title',
-      content: data.meta.og.title
+      content: post.meta.og.title
     },
     {
       property: 'og:description',
-      content: data.meta.og.description
+      content: post.meta.og.description
     },
     {
       property: 'og:image',
-      content: data.meta.og.image
+      content: post.meta.og.image
     },
   ],
 })

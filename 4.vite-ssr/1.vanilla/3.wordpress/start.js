@@ -86,7 +86,7 @@ const requestListener = async function (req, res) {
   } else {
     // Serve all static files.
     // Use `decodeURIComponent` to decode non-English characters in the URL.
-    fs.readFile(`./dist/client/${decodeURIComponent(req.url)}`, (err,data) => {
+    fs.readFile(`./dist/client/${decodeURIComponent(url)}`, (err, data) => {
       if (err) {
         res.writeHead(404, {'Content-Type': 'application/json'})
         res.end(JSON.stringify({

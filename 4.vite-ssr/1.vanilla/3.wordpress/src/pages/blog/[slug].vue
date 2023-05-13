@@ -1,5 +1,5 @@
 <template>
-  <div v-if="post">
+  <div v-if="data">
     <h2>
       {{ title }}
     </h2>
@@ -21,21 +21,22 @@ const date = ref(null)
 const contents = ref(null)
 const thumbnail = ref(null)
 
-const { data: post, error } = await useF3tch(`/wp-json/api/v1/post/${route.params.slug}`)
-if (error) {
-  createError({
-    statusCode: error.statusCode,
-    name: error.name,
-    message: error.message
+const { data, error } = await useF3tch(`/wp-json/api/v1/post/${route.params.slug}`)
+if (error.value) {
+  throwError({
+    statusCode: error.value.statusCode,
+    name: error.value.name,
+    message: error.value.message
   })
 }
-if (!post) {
-  createError({
+if (!data.value) {
+  throwError({
     statusCode: 404,
     name: 'Post Not Found!',
     message: 'Sorry, post not found!'
   })
 }
+const post = unref(data)
 title.value = post.title
 contents.value = post.contents
 date.value = post.date

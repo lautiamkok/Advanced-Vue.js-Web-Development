@@ -1,6 +1,6 @@
 'use strict'
 
-import createError from './camel-case'
+import throwError from './throw-error'
 
 // Check if object/ array is empty. Will return true if empty.
 // Object.entries({}).length === 0
@@ -19,5 +19,5 @@ export default (data) => {
     return !Object.entries(data).length
   }
 
-  createError(`"${data}" is not an object or array`, 500)
+  throwError(`"${data}" is not an object or array`, 500)
 }

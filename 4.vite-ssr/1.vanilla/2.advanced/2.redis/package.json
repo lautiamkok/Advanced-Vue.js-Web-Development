@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "start": "node dist/app.js"
+  },
+  "dependencies": {
+    "find-my-way": "^7.6.0",
+    "redis": "^4.6.6"
+  },
+  "devDependencies": {
+    "unimport": "^3.0.6",
+    "vite": "^4.1.4",
+    "vite-plugin-node": "^3.0.2"
+  }
+}
