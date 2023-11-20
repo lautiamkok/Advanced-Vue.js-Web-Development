@@ -30,12 +30,10 @@
   </div>
 </template>
 
-<!-- <script>
-export default defineComponent({
-  inheritAttrs: false
-})
-</script> -->
-
 <script setup>
-const { error } = useError()
+const props = defineProps({
+  error: {
+    type: [ Object, Boolean ]
+  }
+})
 </script>

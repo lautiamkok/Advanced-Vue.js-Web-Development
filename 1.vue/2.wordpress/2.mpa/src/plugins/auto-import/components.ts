@@ -1,5 +1,7 @@
 'use strict'
 
+// import pascalCase from '@/utils/pascal-case'
+
 // https://vuejs.org/guide/reusability/plugins.html#writing-a-plugin
 export default {
   install: (app, options) => {
@@ -35,6 +37,11 @@ export const installAboutPageComponents = {
 function registerComponents (app, components) {
   let array = []
   let dirname = null
+
+  // Stop here if the object is empty.
+  if (isEmptyObject(components)) {
+    return
+  }
 
   // Loop components and create pairs with a length count.
   Object.entries(components).forEach(([path, component]) => {

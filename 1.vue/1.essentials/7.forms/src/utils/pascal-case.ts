@@ -1,6 +1,7 @@
 'use strict'
 
-import camelCase from './camel-case'
+// Use unimport plugin to auto import utils.
+// import camelCase from './camel-case'
 
 export default (str) => {
   str = camelCase(str)

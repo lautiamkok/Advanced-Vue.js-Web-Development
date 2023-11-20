@@ -6,7 +6,7 @@ This is the code repository for [**Advanced Vue.js Web Development**](https://la
 
 ## Course Overview
 
-A practical hands-on guide for creating single-page applications (SPAs), server-side rendering (SSR) applications, and universal applications using Composition API from Vue.js 3. In this course, you will learn to create routes, pages, layouts, components, composables, middleware, plugins, utils, and Pinia stores in your Vue applications. You will also learn to integrate your Vue.js projects with Windi CSS and Less CSS preprocessor; handle static and dynamic assets such as images and fonts; create a data-persistent shopping cart system using Pinia; validate forms and handle errors in your Vue.js applications. And lastly, you will learn to migrate to Nuxt.js 3 with Composition API from Vue.js 3, as well as using Vue.js 3 for WordPress and Vite SSR for creating Vue.js 3 SSR applications.
+A practical hands-on guide for creating single-page applications (SPAs), server-side rendering (SSR) applications, and universal applications using Composition API from Vue.js 3. In this course, you will learn to create routes, pages, layouts, components, composables, middleware, plugins, utils, and Pinia stores in your Vue applications. You will also learn to integrate your Vue.js projects with UnoCCSS, Windi CSS, and Less CSS preprocessor; handle static and dynamic assets such as images and fonts; create a data-persistent shopping cart system using Pinia; validate forms and handle errors in your Vue.js applications. And lastly, you will learn to migrate to Nuxt.js 3 with Composition API from Vue.js 3, as well as using Vue.js 3 for WordPress and Vite SSR for creating Vue.js 3 SSR applications.
 
 ## Takeaway Skills
 
@@ -18,7 +18,7 @@ A practical hands-on guide for creating single-page applications (SPAs), server-
 
 * Create a data-persistent (client-only) shopping cart system with Pinia
 
-* Create a data-persistent (client-server) shopping cart system with composables
+* Create a data-persistent (client-server) shopping cart system with Redis
 
 * Lazy-load components and images
 
@@ -26,7 +26,7 @@ A practical hands-on guide for creating single-page applications (SPAs), server-
 
 * Auto-import components, composables, utils, and APIs on-demand
 
-* Use Windi CSS and Less in Vue.js applications
+* Use UnoCSS, Windi CSS, and Less in Vue.js applications
 
 * Handle static and dynamic assets with composables and plugins
 
@@ -55,8 +55,7 @@ A practical hands-on guide for creating single-page applications (SPAs), server-
 * Chapter 1. Introducing Advanced Vue
 
     * Knowing the Course
-    * Knowing Vue
-    * Getting Started with Vue CLI
+    * Knowing Vue and Composition APIs
     * Getting Started with Vite
 
 * Chapter 2. Managing Assets and Adding UI Frameworks
@@ -73,12 +72,11 @@ A practical hands-on guide for creating single-page applications (SPAs), server-
     * Creating Layouts
     * Creating Components
 
-* Chapter 4. Managing States
+* Chapter 4. Managing Stores
 
-    * Understanding Vuex
-    * Creating a Shopping Cart with Vuex
-    * Persisting and Modularizing Vuex Stores
-    * Leveraging Vuex Helpers and Vue Slots
+    * Understanding Pinia
+    * Creating a Shopping Cart with Pinia
+    * Persisting Data in Pinia Stores
 
 * Chapter 5. Working with Forms
 
@@ -89,8 +87,8 @@ A practical hands-on guide for creating single-page applications (SPAs), server-
 * Chapter 6. Introducing Nuxt
 
     * Getting Started with Nuxt
-    * Adding Pages, Fetching Data, and Handling Errors
-    * Adding Layouts, Components, and Composables
+    * Adding Pages, Layouts, Components, and Composables
+    * Adding Fetching Data and Handling Errors
     * Serving Assets, Adding Windi CSS, and Adding Less
 
 * Chapter 7. Integrating Vue with WordPress
@@ -102,7 +100,6 @@ A practical hands-on guide for creating single-page applications (SPAs), server-
 
     * Getting Started with Vite SSR
     * Creating Advanced Vue SSR
-    * Using `vite-ssr` Plugin
 
 * Chapter 9. Going Further From Here
 

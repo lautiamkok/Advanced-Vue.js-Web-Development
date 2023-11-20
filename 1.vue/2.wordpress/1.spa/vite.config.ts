@@ -1,26 +1,13 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
-import Unimport from 'unimport/unplugin'
 import WindiCSS from 'vite-plugin-windicss'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
-    WindiCSS(),
-
-    // https://github.com/unjs/unimport
-    Unimport.vite({
-      presets: [
-        'vue'
-      ],
-
-      dirs: [
-        './src/composables/**',
-        './src/utils/**'
-      ]
-    }),
+    WindiCSS()
   ],
 
   // Note that Vite does not support alias in html files.

@@ -1,10 +1,19 @@
 'use strict'
 
+// Use globalThis or unimport plugin to auto import utils.
+// import isEmptyObject from '@/utils/is-empty-object'
+// import pascalCase from '@/utils/pascal-case'
+
 // https://vuejs.org/guide/reusability/plugins.html#writing-a-plugin
 export default {
   install: (app, options) => {
     // `globEager` only can except static string. No dynamic string.
     const components = import.meta.globEager('/src/components/auto-import/**')
+
+    // Stop here if the object is empty.
+    if (isEmptyObject(components)) {
+      return
+    }
 
     let array = []
     let dirname = null

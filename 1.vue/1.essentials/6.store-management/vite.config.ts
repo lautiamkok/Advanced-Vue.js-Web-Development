@@ -1,26 +1,12 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
-import Unimport from 'unimport/unplugin'
 import Pages from 'vite-plugin-pages'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
-
-    // https://github.com/unjs/unimport
-    Unimport.vite({
-      presets: [
-        'vue',
-        'vue-router'
-      ],
-
-      dirs: [
-        './src/composables/**',
-        './src/utils/**'
-      ]
-    }),
 
     // https://github.com/hannoeru/vite-plugin-pages
     Pages()
