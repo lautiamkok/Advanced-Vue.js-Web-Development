@@ -5,46 +5,46 @@
 // https://vuejs.org/guide/reusability/plugins.html#writing-a-plugin
 export default {
   install: (app, options) => {
-    // `globEager` only can except static string. No dynamic string.
-    const components = import.meta.globEager('/src/components/auto-import/**')
+    // `glob` only can except static string. No dynamic string.
+    const modules = import.meta.glob('/src/components/auto-import/**', { eager: true })
 
     // Install components.
-    registerComponents(app, components)
+    registerComponents(app, modules)
   }
 }
 
 export const installGlobalComponents = {
   install: (app, options) => {
-    const components = import.meta.globEager('/src/components/auto-import/global/**')
-    registerComponents(app, components)
+    const modules = import.meta.glob('/src/components/auto-import/global/**', { eager: true })
+    registerComponents(app, modules)
   }
 }
 
 export const installIndexPageComponents = {
   install: (app, options) => {
-    const components = import.meta.globEager('/src/components/auto-import/index/**')
-    registerComponents(app, components)
+    const modules = import.meta.glob('/src/components/auto-import/index/**', { eager: true })
+    registerComponents(app, modules)
   }
 }
 
 export const installAboutPageComponents = {
   install: (app, options) => {
-    const components = import.meta.globEager('/src/components/auto-import/about/**')
-    registerComponents(app, components)
+    const modules = import.meta.glob('/src/components/auto-import/about/**', { eager: true })
+    registerComponents(app, modules)
   }
 }
 
-function registerComponents (app, components) {
+function registerComponents (app, modules) {
   let array = []
   let dirname = null
 
   // Stop here if the object is empty.
-  if (isEmptyObject(components)) {
+  if (isEmptyObject(modules)) {
     return
   }
 
-  // Loop components and create pairs with a length count.
-  Object.entries(components).forEach(([path, component]) => {
+  // Loop modules and create pairs with a length count.
+  Object.entries(modules).forEach(([path, module]) => {
     const length = path.split('/').length
     array.push({ path, length })
   })
@@ -59,7 +59,7 @@ function registerComponents (app, components) {
   dirname = lowest.path.split(file)[0]
   
   // Loop components and install them with camelCase name.
-  Object.entries(components).forEach(([path, component]) => {
+  Object.entries(modules).forEach(([path, module]) => {
     // Remove the top dirname from string first.
     let name = path
       .split(dirname)
@@ -74,7 +74,7 @@ function registerComponents (app, components) {
     // Pascalise the string.
     name = pascalCase(name)
 
-    // Register the component with the pascalCase name.
-    app.component(name, component.default)
+    // Register the module with the pascalCase name.
+    app.component(name, module.default)
   })
 }

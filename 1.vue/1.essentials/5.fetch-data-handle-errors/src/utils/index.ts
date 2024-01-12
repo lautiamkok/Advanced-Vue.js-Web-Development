@@ -3,14 +3,14 @@
 import camelCase from './camel-case'
 
 export default () => {
-  const utils = import.meta.globEager('./**')
+  const modules = import.meta.glob('./**', { eager: true })
   
-  Object.entries(utils).forEach(([path, util]) => {
+  Object.entries(modules).forEach(([path, module]) => {
     let name = path
       .split('/')
       .pop()
       .replace(/\.\w+$/, '')
     name = camelCase(name)
-    globalThis[name] = util.default
+    globalThis[name] = module.default
   })
 }

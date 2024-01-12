@@ -4,8 +4,8 @@
 import { defineStore } from 'pinia'
 
 export const useCartStore = defineStore('cart', () => {
-  const namespace = import.meta.env.VITE_APP_CART_NS
-  const cartFromLocalStorage = localStorage.getItem(namespace)
+  const cartNamespace = import.meta.env.VITE_APP_CART_NS
+  const cartFromLocalStorage = localStorage.getItem(cartNamespace)
   const cart = ref(JSON.parse(cartFromLocalStorage) || [])
   const response = reactive({
     message: '',
@@ -104,9 +104,9 @@ export const useCartStore = defineStore('cart', () => {
   function storeCart (cart) { 
     const body = JSON.stringify(unref(cart))
 
-    localStorage.setItem(id, body)
+    localStorage.setItem(cartNamespace, body)
     if (unref(cart).length === 0) {
-      localStorage.removeItem(id)
+      localStorage.removeItem(cartNamespace)
     }
   }
 

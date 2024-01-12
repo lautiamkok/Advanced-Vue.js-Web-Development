@@ -7,7 +7,7 @@ export default (src) => {
 
   const array = src.split('/')
   const filename = [...array].pop()
-  const images = import.meta.globEager('/src/assets/images/*.{jpg,jpeg,png,svg}')
+  const images = import.meta.glob('/src/assets/images/*.{jpg,jpeg,png,svg}', { eager: true })
   const image = images[`/src/assets/images/${filename}`]
   if (image !== undefined) {
     return image.default
