@@ -1,7 +1,0 @@
-{
-    "require": {
-        "htmlburger/carbon-field-number": "^3.0",
-        "htmlburger/carbon-fields": "^3.5.3",
-        "phpmailer/phpmailer": "^6.8"
-    }
-}

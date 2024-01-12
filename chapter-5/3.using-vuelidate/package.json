@@ -1,0 +1,24 @@
+{
+  "name": "starter",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vuelidate/core": "^2.0.0-alpha.34",
+    "@vuelidate/validators": "^2.0.0-alpha.26",
+    "lodash": "^4.17.21",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.13"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.2.0",
+    "unplugin-auto-import": "^0.8.6",
+    "unplugin-vue-components": "^0.19.6",
+    "vite": "^2.8.0",
+    "vite-plugin-pages": "^0.23.0"
+  }
+}

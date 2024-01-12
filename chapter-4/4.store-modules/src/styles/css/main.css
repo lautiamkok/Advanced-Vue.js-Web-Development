@@ -1,0 +1,63 @@
+/**
+ * ===============================================================
+ * Popper tooltip
+ * https://popper.js.org/
+ * https://popper.js.org/docs/v2/tutorial/
+ * ===============================================================
+ */
+
+/** Style the container. */
+.tooltip-container {
+  /** Reset text-center in case it was set in any parent container. */
+  text-align: initial;
+
+  background-color: black;
+  border-radius: 0.25em;
+
+  color: white;
+  padding: 0.25em;
+}
+
+/** Add an arrow. */
+.arrow,
+.arrow::before {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+}
+
+.arrow {
+  visibility: hidden;
+}
+
+.arrow::before {
+  visibility: visible;
+  content: '';
+  transform: rotate(45deg);
+}
+
+.tooltip-container[data-popper-placement^='top'] > .arrow {
+  bottom: -4px;
+}
+
+.tooltip-container[data-popper-placement^='bottom'] > .arrow {
+  top: -4px;
+}
+
+.tooltip-container[data-popper-placement^='left'] > .arrow {
+  right: -4px;
+}
+
+.tooltip-container[data-popper-placement^='right'] > .arrow {
+  left: -4px;
+}
+
+/** Hide the tooltip. */
+.tooltip-container {
+  display: none;
+}
+
+.tooltip-container[data-show] {
+  display: block;
+}

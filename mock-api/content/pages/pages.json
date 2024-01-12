@@ -1,0 +1,89 @@
+{
+  "app": {
+    "name": "pages",
+    "cwd": "./",
+    "src": "content/",
+    "filePattern": "pages/**/*.md",
+    "ignore": "**/*(drafts|archive)/**",
+    "dist": "content/pages/pages.json",
+    "metadata": true,
+    "version": "1.6.1"
+  },
+  "data": [
+    {
+      "id": "pages__about__index",
+      "contents": "<p>About contents</p>\n",
+      "title": "About",
+      "slug": "about",
+      "layout": "dark",
+      "excerpt": "<p>About contents</p>",
+      "meta": {
+        "relativePath": "pages/about/index.html",
+        "createdAt": "2021-09-20T23:38:50.042Z",
+        "lastModified": "2021-09-20T11:08:11.000Z",
+        "size": 62,
+        "formattedSize": "62 Bytes"
+      }
+    },
+    {
+      "id": "pages__blog__index",
+      "contents": "<p>Welcome to my blog!</p>\n",
+      "title": "Blog",
+      "slug": "blog",
+      "layout": "light",
+      "excerpt": "<p>Welcome to my blog!</p>",
+      "meta": {
+        "relativePath": "pages/blog/index.html",
+        "createdAt": "2021-10-09T01:46:11.560Z",
+        "lastModified": "2021-10-09T01:46:11.560Z",
+        "size": 66,
+        "formattedSize": "66 Bytes"
+      }
+    },
+    {
+      "id": "pages__contact__index",
+      "contents": "<p>Contact contents</p>\n",
+      "title": "Contact",
+      "slug": "contact",
+      "layout": "default",
+      "excerpt": "<p>Contact contents</p>",
+      "meta": {
+        "relativePath": "pages/contact/index.html",
+        "createdAt": "2021-09-20T23:38:50.042Z",
+        "lastModified": "2021-09-20T11:53:32.000Z",
+        "size": 71,
+        "formattedSize": "71 Bytes"
+      }
+    },
+    {
+      "id": "pages__home__index",
+      "contents": "<p>Home contents</p>\n",
+      "title": "Home",
+      "slug": "home",
+      "layout": "default",
+      "excerpt": "<p>Home contents</p>",
+      "meta": {
+        "relativePath": "pages/home/index.html",
+        "createdAt": "2021-09-20T23:38:50.042Z",
+        "lastModified": "2021-09-20T11:08:23.000Z",
+        "size": 62,
+        "formattedSize": "62 Bytes"
+      }
+    },
+    {
+      "id": "pages__shop__index",
+      "contents": "<p>Welcome to my shop!</p>\n",
+      "title": "Shop",
+      "slug": "shop",
+      "layout": "light",
+      "excerpt": "<p>Welcome to my shop!</p>",
+      "meta": {
+        "relativePath": "pages/shop/index.html",
+        "createdAt": "2021-10-09T01:45:49.300Z",
+        "lastModified": "2021-10-09T01:45:49.300Z",
+        "size": 66,
+        "formattedSize": "66 Bytes"
+      }
+    }
+  ]
+}

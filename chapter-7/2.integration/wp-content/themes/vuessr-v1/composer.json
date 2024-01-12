@@ -1,0 +1,14 @@
+{
+    "require": {
+        "htmlburger/carbon-fields": "^3.3",
+        "htmlburger/carbon-field-number": "^3.0",
+        "phpmailer/phpmailer": "^6.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "VueSSR\\": [
+                "source/"
+            ]
+        }
+    }
+}
